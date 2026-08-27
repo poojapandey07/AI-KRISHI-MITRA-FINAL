@@ -1,0 +1,132 @@
+/* Module 6: Market Linkage Styles */
+
+.market-hero-banner {
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-surface) 100%);
+  border-left: 5px solid var(--primary-600);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.market-hero-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.market-icon-big {
+  font-size: 2.2rem;
+}
+
+.market-stat-pills {
+  display: flex;
+  gap: 1rem;
+}
+
+.stat-pill {
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.pill-num {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--primary-800);
+}
+
+.pill-lbl {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.market-search-card {
+  padding: 1rem 1.25rem;
+}
+
+.market-main-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.25rem;
+}
+
+.trend-up {
+  color: var(--success-600);
+  font-weight: 700;
+}
+
+.trend-down {
+  color: var(--danger-600);
+  font-weight: 700;
+}
+
+.trend-flat {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Buyer Card */
+.buyer-lead-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  background-color: var(--white);
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.buyer-lead-card:hover {
+  border-color: var(--primary-400);
+  box-shadow: var(--shadow-sm);
+}
+
+.buyer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.4rem;
+}
+
+.buyer-company {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-900);
+}
+
+.buyer-crop-req {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  margin-bottom: 0.35rem;
+}
+
+.buyer-price-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-surface);
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  margin: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.buyer-brief-box {
+  background-color: var(--primary-surface);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  border-left: 3px solid var(--primary-600);
+}
+
+@media (max-width: 900px) {
+  .market-main-grid {
+    grid-template-columns: 1fr;
+  }
+}

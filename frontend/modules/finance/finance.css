@@ -1,0 +1,145 @@
+/* Module 3: Krishi Finance Styles */
+
+.finance-overview-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.bank-account-card {
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-surface) 100%);
+  border: 1px solid var(--border-light);
+}
+
+.bank-card-visual {
+  background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-900) 100%);
+  color: var(--white);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1rem;
+}
+
+.bank-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.bank-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.bank-card-number {
+  font-size: 1.35rem;
+  font-family: monospace;
+  letter-spacing: 2px;
+  margin-bottom: 1.25rem;
+  color: #f0fdf4;
+}
+
+.bank-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 0.82rem;
+}
+
+.bank-card-holder {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bank-card-ifsc {
+  color: var(--primary-300);
+  font-family: monospace;
+}
+
+.bank-actions-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.finance-stats-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.finance-stats-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.stat-payout-box {
+  background-color: var(--primary-surface);
+  border: 1px solid var(--primary-100);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.payout-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-800);
+  line-height: 1.2;
+}
+
+.payout-lbl {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+
+/* Payment Filter Pills */
+.payment-filter-pills {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-pill:hover {
+  background-color: var(--primary-50);
+  border-color: var(--primary-300);
+}
+
+.filter-pill.active {
+  background-color: var(--primary-600);
+  color: var(--white);
+  border-color: var(--primary-600);
+}
+
+.amount-highlight {
+  font-weight: 700;
+  color: var(--primary-800);
+}
+
+@media (max-width: 900px) {
+  .finance-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}

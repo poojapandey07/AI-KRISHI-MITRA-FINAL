@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Krishi Mitra — Modular Farmer Agriculture Platform</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Theme & Layout Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- 6 Independent Module Styles -->
+  <link rel="stylesheet" href="modules/farmer/farmer.css">
+  <link rel="stylesheet" href="modules/procurement/procurement.css">
+  <link rel="stylesheet" href="modules/finance/finance.css">
+  <link rel="stylesheet" href="modules/ai-standards/standards.css">
+  <link rel="stylesheet" href="modules/disease-pest-ai/disease.css">
+  <link rel="stylesheet" href="modules/market-linkage/market.css">
+
+  <style>
+    /* Dashboard Specific Styles */
+    .dashboard-hero-banner {
+      background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-600) 100%);
+      color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: var(--shadow-md);
+    }
+    .dash-hero-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .dash-hero-sub {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 0.25rem;
+    }
+    .dash-stat-row {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .dash-stat-badge {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+    }
+    .dash-stat-badge strong {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .dash-stat-badge span {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+    .dash-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .dash-card-stat {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-800);
+    }
+    .dash-price-pill {
+      background-color: var(--primary-surface);
+      border: 1px solid var(--primary-100);
+      border-radius: var(--radius-sm);
+      padding: 0.4rem 0.75rem;
+      font-size: 0.82rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Auth Modal Tabs */
+    .auth-tab-buttons {
+      display: flex;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 1.25rem;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      background: none;
+      border: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+    }
+    .auth-tab-btn.active {
+      color: var(--primary-700);
+      border-bottom-color: var(--primary-600);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app-container">
+    
+    <!-- Mobile Sidebar Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Unified Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand-icon">🌱</div>
+        <div>
+          <div class="sidebar-brand-text">AI Krishi Mitra</div>
+          <div class="sidebar-brand-sub">Modular Agri Platform</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Portal</div>
+        <div class="nav-item active" data-view="dashboard">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </div>
+        <div class="nav-item" data-view="farmer">
+          <span class="nav-icon">🌾</span>
+          <span>My Farm & Land</span>
+        </div>
+        <div class="nav-item" data-view="procurement">
+          <span class="nav-icon">🏪</span>
+          <span>Procurement</span>
+        </div>
+        <div class="nav-item" data-view="finance">
+          <span class="nav-icon">🏦</span>
+          <span>Krishi Finance</span>
+        </div>
+
+        <div class="nav-section-title">AI & Market Intelligence</div>
+        <div class="nav-item" data-view="ai-standards">
+          <span class="nav-icon">🤖</span>
+          <span>AI Standards</span>
+        </div>
+        <div class="nav-item" data-view="disease-pest-ai">
+          <span class="nav-icon">🌱</span>
+          <span>Crop Health AI</span>
+        </div>
+        <div class="nav-item" data-view="market-linkage">
+          <span class="nav-icon">📈</span>
+          <span>Market Linkage</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-mini-card">
+          <div class="user-avatar" id="top-user-initials">RK</div>
+          <div class="user-details">
+            <div class="user-name" id="top-farmer-name">Ramesh Kumar</div>
+            <div class="user-role" id="top-farmer-id">FMR-88012</div>
+          </div>
+          <button id="btn-logout" title="Logout" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted);">
+            🚪
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      
+      <!-- Top Application Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Navigation">☰</button>
+          <div class="page-title-box">
+            <h1 id="current-page-title">Farmer Dashboard</h1>
+            <p id="current-page-subtitle">Unified overview of your farm, procurement, finance & markets</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="badge-farmer-id">
+            <span>👨‍🌾</span>
+            <span class="badge-text">Portal ID: </span>
+            <strong id="header-farmer-badge">Online</strong>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dynamic Page Containers -->
+      <main class="page-container">
+        
+        <!-- ==================== VIEW: DASHBOARD ==================== -->
+        <div id="view-dashboard">
+          
+          <div class="dashboard-hero-banner">
+            <div>
+              <div class="dash-hero-title">Namaste, <span id="dash-farmer-name">Kisan Mitra</span>! 🙏</div>
+              <p class="dash-hero-sub">Empowering your farm with AI Quality Grading, Real-Time Mandi Tokens, and Direct DBT Settlements.</p>
+            </div>
+            <div class="dash-stat-row">
+              <div class="dash-stat-badge">
+                <strong id="dash-land-val">4.5 Acres</strong>
+                <span>Total Farm Area</span>
+              </div>
+              <div class="dash-stat-badge">
+                <strong id="dash-crops-val">2 Crops</strong>
+                <span>Cultivated Crops</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 LIVE DASHBOARD CARDS (Prompt Section 10) -->
+          <div class="grid-3">
+
+            <!-- Card 1: 🌾 My Farm -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>🌾</span> My Farm & Crops</div>
+                <span class="badge badge-success">Registered</span>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                Track registered agricultural land parcels, soil types, irrigation, and sowing cycles.
+              </p>
+              <div style="font-size: 0.85rem; color: var(--text-dark);">
+                Active: <strong>Wheat (HD-2967)</strong>, <strong>Mustard (Pusa Bold)</strong>
+              </div>
+              <div class="dash-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="appRouter.navigate('farmer')">Manage Farm →</button>
+              </div>
+            </div>
+
+            <!-- Card 2: 🏪 Procurement -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>🏪</span> Active Procurement</div>
+                <span id="dash-proc-status"><span class="badge badge-warning">Slot Active</span></span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <div>
+                  <small style="color: var(--text-muted);">Current Token</small>
+                  <div class="dash-card-stat" id="dash-proc-token">TKN-042</div>
+                </div>
+                <div style="text-align: right;">
+                  <small style="color: var(--text-muted);">Queue Status</small>
+                  <div style="font-weight: 700; color: var(--primary-700);" id="dash-proc-queue">#3 in Queue</div>
+                </div>
+              </div>
+              <div class="dash-card-footer">
+                <button class="btn btn-primary btn-sm" onclick="appRouter.navigate('procurement')">Queue & Slots →</button>
+              </div>
+            </div>
+
+            <!-- Card 3: 🏦 Finance -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>🏦</span> Krishi Finance</div>
+                <span id="dash-bank-badge"><span class="badge badge-success">Bank Verified</span></span>
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <small style="color: var(--text-muted);">Latest Procurement Settlement</small>
+                <div class="dash-card-stat" id="dash-latest-payout-val">₹72,750</div>
+                <small id="dash-latest-payout-status"><span class="badge badge-warning">Payment Initiated</span></small>
+              </div>
+              <div class="dash-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="appRouter.navigate('finance')">Settlements →</button>
+              </div>
+            </div>
+
+            <!-- Card 4: 🤖 AI Recommendations -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>🤖</span> AI Recommendations</div>
+                <span class="badge badge-primary">Advisory</span>
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <span class="badge badge-warning" id="dash-ai-tip-crop" style="margin-bottom: 0.35rem;">Wheat • Harvesting</span>
+                <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-900);" id="dash-ai-tip-title">
+                  Optimal Harvest & Mandi Window Approaching
+                </div>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem;">
+                  Moisture should read between 11.5% and 12.0% before combine harvesting.
+                </p>
+              </div>
+              <div class="dash-card-footer">
+                <button class="btn btn-outline btn-sm" onclick="appRouter.navigate('ai-standards')">View Standards →</button>
+              </div>
+            </div>
+
+            <!-- Card 5: 🌱 Crop Health -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>🌱</span> Crop Health AI</div>
+                <span id="dash-scan-severity"><span class="badge badge-success">Monitored</span></span>
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <small style="color: var(--text-muted);">Recent Leaf Scan Result</small>
+                <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-900);" id="dash-scan-disease">
+                  Wheat: No Disease Detected (Healthy)
+                </div>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem;">
+                  Use smartphone camera for instant pathology diagnosis & organic prescriptions.
+                </p>
+              </div>
+              <div class="dash-card-footer">
+                <button class="btn btn-primary btn-sm" onclick="appRouter.navigate('disease-pest-ai')">Scan Leaf 📷</button>
+              </div>
+            </div>
+
+            <!-- Card 6: 📈 Market -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>📈</span> Mandi Spot Rates</div>
+                <span class="badge badge-success">Live APMC</span>
+              </div>
+              <div id="dash-mandi-ticker">
+                <div class="dash-price-pill">
+                  <strong>Wheat</strong> (Karnal): <span style="color: var(--primary-700); font-weight: 700;">₹2,425 / Q</span>
+                </div>
+                <div class="dash-price-pill">
+                  <strong>Mustard</strong> (Hisar): <span style="color: var(--primary-700); font-weight: 700;">₹5,650 / Q</span>
+                </div>
+              </div>
+              <div class="dash-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="appRouter.navigate('market-linkage')">Explore Mandis →</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ==================== VIEW: 1. FARMER & PROFILE ==================== -->
+        <div id="view-farmer" style="display: none;">
+          <!-- Embeds module 1 HTML -->
+          <div class="module-farmer-view">
+            <div class="card profile-hero-card">
+              <div class="profile-hero-content">
+                <div class="profile-avatar-large" id="profile-avatar-letter">RK</div>
+                <div class="profile-info-block">
+                  <div class="profile-header-tags">
+                    <span class="badge badge-primary" id="profile-badge-id">FMR-88012</span>
+                    <span class="badge badge-success">Verified Kisan Account</span>
+                  </div>
+                  <h2 id="profile-display-name">Ramesh Kumar</h2>
+                  <p class="profile-location-text">📍 <span id="profile-display-location">Nilokheri, Karnal, Haryana</span></p>
+                  <div class="profile-contact-row">
+                    <span>📞 <strong id="profile-display-mobile">9876543210</strong></span>
+                    <span id="profile-email-container">✉️ <span id="profile-display-email">ramesh.kumar@example.com</span></span>
+                  </div>
+                </div>
+                <div class="profile-stats-block">
+                  <div class="stat-box">
+                    <span class="stat-number" id="profile-stat-land">4.5</span>
+                    <span class="stat-label">Land (Acres)</span>
+                  </div>
+                  <div class="stat-box">
+                    <span class="stat-number" id="profile-stat-crops">2</span>
+                    <span class="stat-label">Crops</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="farm-assets-grid">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title"><span>🏞️</span> Registered Land Parcels</div>
+                  <button class="btn btn-secondary btn-sm" id="btn-open-add-land">+ Add Land</button>
+                </div>
+                <div id="land-list-container"></div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title"><span>🌾</span> Cultivated Crops</div>
+                  <button class="btn btn-primary btn-sm" id="btn-open-add-crop">+ Register Crop</button>
+                </div>
+                <div id="crops-list-container"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW: 2. PROCUREMENT ==================== -->
+        <div id="view-procurement" style="display: none;">
+          <div class="module-procurement-view">
+            <div class="procurement-top-grid">
+              <div class="card queue-tracker-card" id="queue-tracker-card">
+                <div class="card-header">
+                  <div class="card-title"><span>🎫</span> Live Procurement Queue Token</div>
+                  <span class="badge badge-primary">Live Weighbridge</span>
+                </div>
+                <div id="queue-status-content"></div>
+              </div>
+              <div class="card booking-cta-card">
+                <div class="booking-cta-content">
+                  <div class="booking-cta-icon">🏪</div>
+                  <div>
+                    <h3>Book APMC Mandi Slot</h3>
+                    <p>Avoid long mandi lines by booking your government procurement slot online.</p>
+                  </div>
+                  <button class="btn btn-primary btn-lg" id="btn-open-book-slot">📅 Book Slot Now</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>📋</span> My Procurement Applications & Timeline</div>
+                <button class="btn btn-secondary btn-sm" onclick="ProcurementModule.loadApplications()">↻ Refresh</button>
+              </div>
+              <div id="applications-list-container"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>🏛️</span> Official Government & APMC Procurement Centres</div>
+                <select class="form-control" id="centre-filter-crop" style="max-width: 200px; min-height: 36px; padding: 0.25rem 0.75rem;">
+                  <option value="">All Crops</option>
+                  <option value="Wheat">Wheat</option>
+                  <option value="Mustard">Mustard</option>
+                  <option value="Paddy">Paddy / Rice</option>
+                  <option value="Cotton">Cotton</option>
+                  <option value="Soyabean">Soyabean</option>
+                </select>
+              </div>
+              <div class="centres-grid" id="centres-list-container"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW: 3. FINANCE ==================== -->
+        <div id="view-finance" style="display: none;">
+          <div class="module-finance-view">
+            <div class="finance-overview-grid">
+              <div class="card bank-account-card">
+                <div class="card-header">
+                  <div class="card-title"><span>🏦</span> Primary Agricultural Bank Account</div>
+                  <div id="bank-verification-pill"></div>
+                </div>
+                <div id="bank-account-content"></div>
+              </div>
+              <div class="card finance-stats-card">
+                <div class="card-header">
+                  <div class="card-title"><span>💰</span> Direct Procurement DBT Payouts</div>
+                </div>
+                <div class="finance-stats-body">
+                  <div class="stat-payout-box">
+                    <span class="payout-num" id="total-payout-credited">₹0</span>
+                    <span class="payout-lbl">Total Credited</span>
+                  </div>
+                  <div class="stat-payout-box">
+                    <span class="payout-num" id="total-payout-processing" style="color: var(--warning-600);">₹0</span>
+                    <span class="payout-lbl">In Processing</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem;">
+                  🔒 Direct Bank Transfers are executed through RBI-regulated PFMS/DBT agricultural corridors.
+                </p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header" style="flex-wrap: wrap; gap: 0.75rem;">
+                <div class="card-title"><span>📜</span> Procurement Settlement History & Live Tracking</div>
+                <div class="payment-filter-pills" id="payment-filter-group">
+                  <button class="filter-pill active" data-filter="all">All Settlements</button>
+                  <button class="filter-pill" data-filter="processing">Processing</button>
+                  <button class="filter-pill" data-filter="credited">Credited</button>
+                  <button class="filter-pill" data-filter="failed">Failed</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Payment ID</th>
+                      <th>Procurement Ref</th>
+                      <th>Crop & Qty</th>
+                      <th>Linked Bank</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="payments-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW: 4. AI STANDARDS ==================== -->
+        <div id="view-ai-standards" style="display: none;">
+          <div class="module-standards-view">
+            <div class="card standards-hero-card">
+              <div class="card-header">
+                <div class="card-title"><span>🤖</span> AI Crop Quality & Procurement Standards Grader</div>
+                <span class="badge badge-primary">FCI & Agmark Compliant</span>
+              </div>
+              <div class="standards-input-container">
+                <form id="form-check-standards">
+                  <div class="grid-3">
+                    <div class="form-group">
+                      <label class="form-label">Crop Name *</label>
+                      <select class="form-control" id="ai-std-crop" required>
+                        <option value="Wheat" selected>Wheat (गेहूं)</option>
+                        <option value="Mustard">Mustard (सरसों)</option>
+                        <option value="Paddy (Basmati)">Paddy / Basmati (धान)</option>
+                        <option value="Cotton">Cotton (कपास)</option>
+                        <option value="Soyabean">Soyabean (सोयाबीन)</option>
+                        <option value="Maize">Maize (मक्का)</option>
+                        <option value="Chana (Chickpea)">Chana (चना)</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Variety (Optional)</label>
+                      <input type="text" class="form-control" id="ai-std-variety" placeholder="e.g. HD-2967, Pusa 1121">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Moisture Content (%) *</label>
+                      <input type="number" step="0.1" min="1" max="40" class="form-control" id="ai-std-moisture" required value="11.8">
+                      <span class="form-hint">FCI Standard: &le; 12.0% for Wheat</span>
+                    </div>
+                  </div>
+                  <div class="grid-3">
+                    <div class="form-group">
+                      <label class="form-label">Foreign Matter / Chaff (%) *</label>
+                      <input type="number" step="0.1" min="0" max="25" class="form-control" id="ai-std-foreign" required value="0.6">
+                      <span class="form-hint">Agmark Max: 0.75%</span>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Damaged / Discolored Grains (%) *</label>
+                      <input type="number" step="0.1" min="0" max="25" class="form-control" id="ai-std-damaged" required value="1.2">
+                      <span class="form-hint">FCI FAQ Limit: 2.0%</span>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: flex-end;">
+                      <button type="submit" class="btn btn-primary" style="width: 100%; min-height: 42px;">
+                        ⚡ Run AI Quality Standards Test
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div id="standards-result-container" style="display: none; margin-top: 1.5rem;"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>💡</span> Personalized AI Agronomy & Market Advisory</div>
+                <span class="badge badge-success">Tailored for Your Active Crops</span>
+              </div>
+              <div class="recommendations-grid" id="recommendations-container"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW: 5. DISEASE & PEST AI ==================== -->
+        <div id="view-disease-pest-ai" style="display: none;">
+          <div class="module-disease-view">
+            <div class="card disease-scanner-card">
+              <div class="card-header">
+                <div class="card-title"><span>🌱</span> AI Crop Health & Disease Diagnostic Scanner</div>
+                <span class="badge badge-success">Computer Vision AI Engine</span>
+              </div>
+              <div class="scanner-layout-grid">
+                <div class="upload-dropzone" id="disease-dropzone">
+                  <input type="file" id="disease-file-input" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                  <div id="dropzone-prompt">
+                    <div class="dropzone-icon">📷</div>
+                    <h4 style="font-size: 1.1rem; color: var(--primary-900); margin-bottom: 0.25rem;">
+                      Upload or Take Photo of Crop Leaf
+                    </h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                      Supports JPG, PNG, WEBP. Drag & drop or click to browse.
+                    </p>
+                    <button type="button" class="btn btn-primary btn-sm" id="btn-browse-file">📁 Select Image File</button>
+                  </div>
+                  <div id="dropzone-preview" style="display: none; width: 100%; position: relative;">
+                    <img id="image-preview-element" src="" alt="Crop Preview" class="scanner-preview-img">
+                    <div class="scanner-overlay-line" id="scanner-laser-line"></div>
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-reselect-file" style="margin-top: 0.75rem;">↻ Change Image</button>
+                  </div>
+                </div>
+
+                <div class="scanner-side-panel">
+                  <h4 style="font-size: 1rem; color: var(--primary-900); margin-bottom: 0.5rem;">⚡ Quick Test Samples</h4>
+                  <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                    Test real-time AI computer vision diagnostics with one-click samples:
+                  </p>
+                  <div class="sample-chips-grid">
+                    <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Wheat Yellow Rust')">🌾 Wheat Rust</button>
+                    <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Tomato Early Blight')">🍅 Tomato Blight</button>
+                    <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Rice Blast')">🌾 Rice Blast</button>
+                    <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Cotton Pink Bollworm')">☁️ Cotton Bollworm</button>
+                    <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Mustard White Rust')">🌼 Mustard Rust</button>
+                    <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Healthy Green Leaf')">🌿 Healthy Leaf</button>
+                  </div>
+                  <div class="scanner-action-box">
+                    <button class="btn btn-primary btn-lg" id="btn-run-diagnosis" disabled style="width: 100%;">
+                      🔬 Run AI Health Diagnosis
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="disease-diagnosis-report" style="display: none; margin-top: 1.5rem;"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><span>📜</span> Recent Crop Health Scans</div>
+                <button class="btn btn-secondary btn-sm" onclick="DiseaseModule.loadHistory()">↻ Refresh History</button>
+              </div>
+              <div id="disease-history-container"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW: 6. MARKET LINKAGE ==================== -->
+        <div id="view-market-linkage" style="display: none;">
+          <div class="module-market-view">
+            <div class="market-hero-banner card">
+              <div class="market-hero-left">
+                <div class="market-icon-big">📈</div>
+                <div>
+                  <h2 style="font-size: 1.35rem; color: var(--primary-900);">Live Mandi APMC Prices & Institutional Buyers</h2>
+                  <p style="font-size: 0.88rem; color: var(--text-muted);">
+                    Real-time price discoveries from 500+ agricultural mandis and direct corporate contracts.
+                  </p>
+                </div>
+              </div>
+              <div class="market-stat-pills">
+                <div class="stat-pill">
+                  <span class="pill-num" id="stat-mandis-count">9</span>
+                  <span class="pill-lbl">Mandis Tracked</span>
+                </div>
+                <div class="stat-pill">
+                  <span class="pill-num" id="stat-buyers-count">4</span>
+                  <span class="pill-lbl">Verified Buyers</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card market-search-card">
+              <div class="grid-3">
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">🔍 Search by Crop</label>
+                  <input type="text" class="form-control" id="mkt-search-crop" placeholder="e.g. Wheat, Mustard, Paddy...">
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">📍 State or District</label>
+                  <input type="text" class="form-control" id="mkt-search-location" placeholder="e.g. Haryana, Karnal, Punjab...">
+                </div>
+                <div class="form-group" style="margin-bottom: 0; display: flex; align-items: flex-end; gap: 0.5rem;">
+                  <button class="btn btn-primary" id="btn-mkt-search" style="flex: 1;">Search Mandis</button>
+                  <button class="btn btn-secondary" id="btn-mkt-reset">Reset</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="market-main-grid">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title"><span>🌾</span> Live APMC Mandi Spot Rates</div>
+                  <span class="badge badge-success">Updated Daily</span>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Crop & Variety</th>
+                        <th>Mandi / Yard</th>
+                        <th>State</th>
+                        <th>Modal Price</th>
+                        <th>Min - Max</th>
+                        <th>Trend</th>
+                      </tr>
+                    </thead>
+                    <tbody id="mkt-prices-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title"><span>🤝</span> Institutional Buyer Demand Leads</div>
+                  <span class="badge badge-primary">Direct Farm Gate</span>
+                </div>
+                <div class="buyers-cards-list" id="buyers-cards-container"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ==================== SHARED MODALS ==================== -->
+
+  <!-- Auth Modal (Login / Register) -->
+  <div class="modal-overlay" id="modal-auth">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🌾 AI Krishi Mitra Portal</h3>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tab-buttons">
+          <button class="auth-tab-btn active" id="tab-auth-login" onclick="appRouter.switchAuthTab('login')">
+            Farmer Login
+          </button>
+          <button class="auth-tab-btn" id="tab-auth-register" onclick="appRouter.switchAuthTab('register')">
+            New Registration
+          </button>
+        </div>
+
+        <!-- Login Pane -->
+        <div id="pane-auth-login">
+          <form id="form-auth-login">
+            <div class="form-group">
+              <label class="form-label">Mobile Number / Email / Farmer ID *</label>
+              <input type="text" class="form-control" id="login-mobile" required value="9876543210" placeholder="e.g. 9876543210">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password *</label>
+              <input type="password" class="form-control" id="login-password" required value="Password@123" placeholder="••••••••">
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-fill-demo">
+                ⚡ Fill Demo Account
+              </button>
+              <small style="color: var(--text-muted);">Password@123</small>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              Log In to Portal
+            </button>
+          </form>
+        </div>
+
+        <!-- Register Pane -->
+        <div id="pane-auth-register" style="display: none;">
+          <form id="form-auth-register">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" id="reg-name" required placeholder="e.g. Suresh Patel">
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Mobile Number *</label>
+                <input type="tel" class="form-control" id="reg-mobile" required placeholder="10-digit mobile">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address (Optional)</label>
+                <input type="email" class="form-control" id="reg-email" placeholder="kisan@example.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password *</label>
+              <input type="password" class="form-control" id="reg-password" required placeholder="At least 6 characters" minlength="6">
+            </div>
+            <div class="grid-3">
+              <div class="form-group">
+                <label class="form-label">State *</label>
+                <input type="text" class="form-control" id="reg-state" required placeholder="e.g. Haryana">
+              </div>
+              <div class="form-group">
+                <label class="form-label">District *</label>
+                <input type="text" class="form-control" id="reg-district" required placeholder="e.g. Karnal">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Village *</label>
+                <input type="text" class="form-control" id="reg-village" required placeholder="e.g. Nilokheri">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;">
+              Create Farmer Account
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Land Modal -->
+  <div class="modal-overlay" id="modal-add-land">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🏞️ Add Land Parcel</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-add-land')">&times;</button>
+      </div>
+      <form id="form-add-land">
+        <div class="modal-body">
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Total Land Area *</label>
+              <input type="number" step="0.1" min="0.1" class="form-control" id="land-area" required placeholder="e.g. 3.5">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Unit *</label>
+              <select class="form-control" id="land-unit">
+                <option value="Acres" selected>Acres</option>
+                <option value="Hectares">Hectares</option>
+                <option value="Bigha">Bigha</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Soil Type *</label>
+              <select class="form-control" id="land-soil" required>
+                <option value="Alluvial Soil (Loamy)">Alluvial Soil (Loamy)</option>
+                <option value="Black Cotton Soil">Black Cotton Soil</option>
+                <option value="Red & Yellow Sandy Soil">Red & Yellow Sandy Soil</option>
+                <option value="Clayey Wet Soil">Clayey Wet Soil</option>
+                <option value="Silt Loam">Silt Loam</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Irrigation Type *</label>
+              <select class="form-control" id="land-irrigation" required>
+                <option value="Drip Irrigation">Drip Irrigation</option>
+                <option value="Sprinkler System">Sprinkler System</option>
+                <option value="Tube-well / Borewell">Tube-well / Borewell</option>
+                <option value="Canal Water Feed">Canal Water Feed</option>
+                <option value="Rainfed (Monsoon)">Rainfed (Monsoon)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Land Parcel Location / Khasra No. *</label>
+            <input type="text" class="form-control" id="land-location" required placeholder="e.g. Khasra 142/3, North Field, Nilokheri">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-add-land')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save Land Parcel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Crop Modal -->
+  <div class="modal-overlay" id="modal-add-crop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🌾 Register Cultivated Crop</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-add-crop')">&times;</button>
+      </div>
+      <form id="form-add-crop">
+        <div class="modal-body">
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Crop Name *</label>
+              <select class="form-control" id="crop-name" required>
+                <option value="Wheat">Wheat (गेहूं)</option>
+                <option value="Paddy (Basmati)">Paddy / Rice (धान)</option>
+                <option value="Mustard">Mustard (सरसों)</option>
+                <option value="Cotton">Cotton (कपास)</option>
+                <option value="Soyabean">Soyabean (सोयाबीन)</option>
+                <option value="Maize">Maize (मक्का)</option>
+                <option value="Chana (Chickpea)">Chana / Gram (चना)</option>
+                <option value="Tomato">Tomato (टमाटर)</option>
+                <option value="Onion">Onion (प्याज)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Crop Variety *</label>
+              <input type="text" class="form-control" id="crop-variety" required placeholder="e.g. HD-2967, Pusa Bold">
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Sowing Date *</label>
+              <input type="date" class="form-control" id="crop-sowing" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Expected Harvest Date *</label>
+              <input type="date" class="form-control" id="crop-harvest" required>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Cultivated Area (Acres) *</label>
+              <input type="number" step="0.1" min="0.1" class="form-control" id="crop-area" required placeholder="e.g. 2.5">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estimated Yield (Quintals)</label>
+              <input type="number" step="0.5" min="0" class="form-control" id="crop-yield" placeholder="e.g. 50">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-add-crop')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Register Crop</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Book Slot Modal -->
+  <div class="modal-overlay" id="modal-book-slot">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🏪 Book Procurement Slot</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-book-slot')">&times;</button>
+      </div>
+      <form id="form-book-slot">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">1. Select Procurement Centre *</label>
+            <select class="form-control" id="book-centre-select" required>
+              <option value="">-- Choose Mandi / Centre --</option>
+            </select>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">2. Select Crop *</label>
+              <select class="form-control" id="book-crop-select" required>
+                <option value="">-- Choose Crop --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estimated Quantity (Quintals) *</label>
+              <input type="number" step="1" min="1" class="form-control" id="book-quantity" required placeholder="e.g. 30">
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">3. Booking Date *</label>
+              <input type="date" class="form-control" id="book-date" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">4. Select Time Slot *</label>
+              <select class="form-control" id="book-slot-select" required>
+                <option value="08:00 AM - 10:00 AM">08:00 AM - 10:00 AM (Morning Slot)</option>
+                <option value="10:00 AM - 12:00 PM" selected>10:00 AM - 12:00 PM (Midday Slot)</option>
+                <option value="12:00 PM - 02:00 PM">12:00 PM - 02:00 PM (Afternoon Slot)</option>
+                <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM (Evening Slot)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-book-slot')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Confirm & Generate Token</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Link Bank Modal -->
+  <div class="modal-overlay" id="modal-link-bank">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🏦 Link Agricultural Bank Account</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-link-bank')">&times;</button>
+      </div>
+      <form id="form-link-bank">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Bank Name *</label>
+            <input type="text" class="form-control" id="bank-name-input" required placeholder="e.g. State Bank of India">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Account Holder Name *</label>
+            <input type="text" class="form-control" id="bank-holder-input" required placeholder="e.g. Ramesh Kumar">
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Bank Account Number *</label>
+              <input type="password" class="form-control" id="bank-acc-input" required placeholder="Enter 9 to 18 digits" minlength="9" maxlength="18">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirm Account Number *</label>
+              <input type="text" class="form-control" id="bank-acc-confirm" required placeholder="Re-enter account number">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">11-Digit IFSC Code *</label>
+            <input type="text" class="form-control" id="bank-ifsc-input" required placeholder="e.g. SBIN0001234" maxlength="11" style="text-transform: uppercase;">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-link-bank')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save & Initiate Verification</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Buyer Connect Modal -->
+  <div class="modal-overlay" id="modal-buyer-connect">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🤝 Connect with Buyer</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-buyer-connect')">&times;</button>
+      </div>
+      <form id="form-buyer-connect">
+        <input type="hidden" id="connect-buyer-id">
+        <div class="modal-body">
+          <div class="buyer-brief-box" id="modal-buyer-brief"></div>
+          <div class="grid-2" style="margin-top: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Offered Quantity (Quintals) *</label>
+              <input type="number" step="1" min="1" class="form-control" id="connect-offered-qty" required placeholder="e.g. 50">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Expected Price (₹ / Quintal)</label>
+              <input type="number" step="10" min="100" class="form-control" id="connect-expected-price" placeholder="e.g. 2500">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message for Sourcing Agent</label>
+            <textarea class="form-control" id="connect-note" placeholder="Mention variety, harvest date, moisture reading..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-buyer-connect')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Direct Lead</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+
+  <!-- 6 Independent Module Controllers -->
+  <script src="modules/farmer/farmer.js"></script>
+  <script src="modules/procurement/procurement.js"></script>
+  <script src="modules/finance/finance.js"></script>
+  <script src="modules/ai-standards/standards.js"></script>
+  <script src="modules/disease-pest-ai/disease.js"></script>
+  <script src="modules/market-linkage/market.js"></script>
+
+  <!-- Master Router & Coordinator -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>

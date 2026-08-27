@@ -1,0 +1,299 @@
+/* Module 2: Procurement Styles */
+
+.procurement-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.queue-tracker-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border: 1px solid var(--primary-300);
+}
+
+.queue-token-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+
+.token-big-badge {
+  background-color: var(--primary-700);
+  color: var(--white);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(27, 94, 32, 0.2);
+}
+
+.queue-stats-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.queue-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.queue-stat-val {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-800);
+}
+
+.queue-stat-lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.booking-cta-card {
+  background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
+  color: var(--white);
+  display: flex;
+  align-items: center;
+}
+
+.booking-cta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.booking-cta-icon {
+  font-size: 2rem;
+}
+
+.booking-cta-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.booking-cta-content p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.5rem;
+}
+
+.booking-cta-content .btn {
+  background-color: var(--white);
+  color: var(--primary-800);
+}
+
+.booking-cta-content .btn:hover {
+  background-color: var(--primary-50);
+}
+
+/* Status Progression Stepper */
+.procurement-item-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  background-color: var(--white);
+}
+
+.procurement-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.proc-id-box h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-900);
+}
+
+.proc-id-box p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* 6-Step Visual Timeline */
+.status-timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.status-timeline::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  right: 20px;
+  height: 3px;
+  background-color: var(--border-light);
+  z-index: 1;
+}
+
+.timeline-step {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.step-bullet {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background-color: var(--white);
+  border: 2px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  transition: var(--transition);
+}
+
+.step-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  max-width: 90px;
+  line-height: 1.2;
+}
+
+.timeline-step.completed .step-bullet {
+  background-color: var(--primary-600);
+  border-color: var(--primary-600);
+  color: var(--white);
+}
+
+.timeline-step.completed .step-label {
+  color: var(--primary-800);
+  font-weight: 600;
+}
+
+.timeline-step.active .step-bullet {
+  background-color: var(--white);
+  border-color: var(--gold-500);
+  color: var(--gold-500);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+}
+
+.timeline-step.active .step-label {
+  color: var(--gold-500);
+  font-weight: 700;
+}
+
+/* Simulation Controls */
+.procurement-simulation-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-surface);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.procurement-simulation-bar span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-800);
+}
+
+/* Centres Grid */
+.centres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.centre-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.centre-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-400);
+}
+
+.centre-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-900);
+  margin-bottom: 0.35rem;
+}
+
+.centre-address {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.centre-crop-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.crop-tag {
+  background-color: var(--primary-50);
+  color: var(--primary-700);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.booking-wizard-steps {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-700);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--border-light);
+}
+
+.booking-notice-box {
+  background-color: #fefce8;
+  border: 1px solid #fef08a;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  font-size: 0.82rem;
+  color: #854d0e;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .procurement-top-grid {
+    grid-template-columns: 1fr;
+  }
+  .status-timeline {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .timeline-step {
+    min-width: 70px;
+  }
+}

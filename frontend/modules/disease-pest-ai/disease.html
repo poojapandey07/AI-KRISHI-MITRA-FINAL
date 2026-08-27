@@ -1,0 +1,101 @@
+<!-- Module 5: Disease & Pest AI View -->
+<div class="module-disease-view">
+
+  <!-- Scanner Upload Card -->
+  <div class="card disease-scanner-card">
+    <div class="card-header">
+      <div class="card-title">
+        <span>🌱</span> AI Crop Health & Disease Diagnostic Scanner
+      </div>
+      <span class="badge badge-success">Computer Vision AI Engine</span>
+    </div>
+
+    <div class="scanner-layout-grid">
+      
+      <!-- Upload Zone -->
+      <div class="upload-dropzone" id="disease-dropzone">
+        <input type="file" id="disease-file-input" accept="image/jpeg,image/png,image/webp" style="display: none;">
+        
+        <div id="dropzone-prompt">
+          <div class="dropzone-icon">📷</div>
+          <h4 style="font-size: 1.1rem; color: var(--primary-900); margin-bottom: 0.25rem;">
+            Upload or Take Photo of Crop Leaf
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Supports JPG, PNG, WEBP. Drag & drop or click to browse.
+          </p>
+          <button type="button" class="btn btn-primary btn-sm" id="btn-browse-file">
+            📁 Select Image File
+          </button>
+        </div>
+
+        <div id="dropzone-preview" style="display: none; width: 100%; position: relative;">
+          <img id="image-preview-element" src="" alt="Crop Sample Preview" class="scanner-preview-img">
+          <div class="scanner-overlay-line" id="scanner-laser-line"></div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-reselect-file" style="margin-top: 0.75rem;">
+            ↻ Change Image
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Test Samples & Instructions -->
+      <div class="scanner-side-panel">
+        <h4 style="font-size: 1rem; color: var(--primary-900); margin-bottom: 0.5rem;">
+          ⚡ Quick Test Samples
+        </h4>
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Don't have a photo right now? Click any sample crop condition below to test the AI diagnostics instantly:
+        </p>
+
+        <div class="sample-chips-grid">
+          <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Wheat Yellow Rust')">
+            🌾 Wheat Rust
+          </button>
+          <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Tomato Early Blight')">
+            🍅 Tomato Blight
+          </button>
+          <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Rice Blast')">
+            🌾 Rice Blast
+          </button>
+          <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Cotton Pink Bollworm')">
+            ☁️ Cotton Bollworm
+          </button>
+          <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Mustard White Rust')">
+            🌼 Mustard Rust
+          </button>
+          <button type="button" class="sample-chip" onclick="DiseaseModule.runSampleTest('Healthy Green Leaf')">
+            🌿 Healthy Foliage
+          </button>
+        </div>
+
+        <div class="scanner-action-box">
+          <button class="btn btn-primary btn-lg" id="btn-run-diagnosis" disabled style="width: 100%;">
+            🔬 Run AI Health Diagnosis
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Diagnostic Report Card -->
+    <div id="disease-diagnosis-report" style="display: none; margin-top: 1.5rem;">
+      <!-- Populated dynamically by disease.js -->
+    </div>
+  </div>
+
+  <!-- Historical Scans Gallery -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <span>📜</span> Recent Crop Health Scans
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="DiseaseModule.loadHistory()">
+        ↻ Refresh History
+      </button>
+    </div>
+    <div id="disease-history-container">
+      <!-- Dynamic history loaded by disease.js -->
+    </div>
+  </div>
+
+</div>

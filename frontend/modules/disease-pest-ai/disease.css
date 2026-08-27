@@ -1,0 +1,166 @@
+/* Module 5: Disease & Pest AI Styles */
+
+.disease-scanner-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f6faf6 100%);
+  border: 1px solid var(--primary-300);
+}
+
+.scanner-layout-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+}
+
+.upload-dropzone {
+  border: 2px dashed var(--primary-300);
+  border-radius: var(--radius-md);
+  background-color: var(--white);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  min-height: 260px;
+}
+
+.upload-dropzone:hover, .upload-dropzone.dragover {
+  border-color: var(--primary-600);
+  background-color: var(--primary-50);
+}
+
+.dropzone-icon {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.scanner-preview-img {
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+}
+
+.scanner-overlay-line {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #22c55e, #15803d, transparent);
+  box-shadow: 0 0 10px #22c55e;
+  animation: laserScan 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes laserScan {
+  0% { top: 5%; }
+  100% { top: 90%; }
+}
+
+.scanner-side-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.sample-chips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.sample-chip {
+  background-color: var(--primary-surface);
+  border: 1px solid var(--primary-100);
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-900);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+}
+
+.sample-chip:hover {
+  background-color: var(--primary-100);
+  border-color: var(--primary-500);
+}
+
+/* Diagnosis Report Styles */
+.diagnosis-report-card {
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border-left: 5px solid var(--primary-600);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.diagnosis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.treatment-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.treatment-card {
+  background-color: var(--primary-surface);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  border: 1px solid var(--primary-100);
+}
+
+.treatment-card h5 {
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--primary-900);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.treatment-card ul {
+  padding-left: 1.2rem;
+  font-size: 0.82rem;
+  color: var(--text-main);
+}
+
+.treatment-card li {
+  margin-bottom: 0.35rem;
+}
+
+@media (max-width: 900px) {
+  .scanner-layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .treatment-columns-grid {
+    grid-template-columns: 1fr;
+  }
+}

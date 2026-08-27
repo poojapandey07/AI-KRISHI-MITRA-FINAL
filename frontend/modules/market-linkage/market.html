@@ -1,0 +1,128 @@
+<!-- Module 6: Market Linkage & Integration View -->
+<div class="module-market-view">
+
+  <!-- Market Dashboard Top Summary -->
+  <div class="market-hero-banner card">
+    <div class="market-hero-left">
+      <div class="market-icon-big">📈</div>
+      <div>
+        <h2 style="font-size: 1.35rem; color: var(--primary-900);">Live Mandi APMC Prices & Institutional Buyers</h2>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Real-time price discoveries from 500+ agricultural mandis and direct corporate contracts.
+        </p>
+      </div>
+    </div>
+    <div class="market-stat-pills">
+      <div class="stat-pill">
+        <span class="pill-num" id="stat-mandis-count">9</span>
+        <span class="pill-lbl">Mandis Tracked</span>
+      </div>
+      <div class="stat-pill">
+        <span class="pill-num" id="stat-buyers-count">4</span>
+        <span class="pill-lbl">Verified Buyers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search & Filter Controls -->
+  <div class="card market-search-card">
+    <div class="grid-3">
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label">🔍 Search by Crop</label>
+        <input type="text" class="form-control" id="mkt-search-crop" placeholder="e.g. Wheat, Mustard, Paddy...">
+      </div>
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label">📍 State or District</label>
+        <input type="text" class="form-control" id="mkt-search-location" placeholder="e.g. Haryana, Karnal, Punjab...">
+      </div>
+      <div class="form-group" style="margin-bottom: 0; display: flex; align-items: flex-end; gap: 0.5rem;">
+        <button class="btn btn-primary" id="btn-mkt-search" style="flex: 1;">Search Mandis</button>
+        <button class="btn btn-secondary" id="btn-mkt-reset">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Market Grid (Live Mandi Prices + Corporate Buyers) -->
+  <div class="market-main-grid">
+
+    <!-- Live Prices Table Card -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🌾</span> Live APMC Mandi Spot Rates
+        </div>
+        <span class="badge badge-success">Updated Daily</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Crop & Variety</th>
+              <th>Mandi / Yard</th>
+              <th>State</th>
+              <th>Modal Price</th>
+              <th>Min - Max</th>
+              <th>Trend</th>
+            </tr>
+          </thead>
+          <tbody id="mkt-prices-tbody">
+            <!-- Dynamic price rows loaded by market.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Institutional Buyer Opportunities -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🤝</span> Institutional Buyer Demand Leads
+        </div>
+        <span class="badge badge-primary">Direct Farm Gate Pickup</span>
+      </div>
+      <div class="buyers-cards-list" id="buyers-cards-container">
+        <!-- Dynamic buyer cards loaded by market.js -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Buyer Connection Modal -->
+  <div class="modal-overlay" id="modal-buyer-connect">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🤝 Connect with Buyer</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-buyer-connect')">&times;</button>
+      </div>
+      <form id="form-buyer-connect">
+        <input type="hidden" id="connect-buyer-id">
+        <div class="modal-body">
+          <div class="buyer-brief-box" id="modal-buyer-brief">
+            <!-- Filled dynamically -->
+          </div>
+
+          <div class="grid-2" style="margin-top: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Offered Quantity (Quintals) *</label>
+              <input type="number" step="1" min="1" class="form-control" id="connect-offered-qty" required placeholder="e.g. 50">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Expected Price (₹ / Quintal)</label>
+              <input type="number" step="10" min="100" class="form-control" id="connect-expected-price" placeholder="e.g. 2500">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message / Quality Details for Sourcing Agent</label>
+            <textarea class="form-control" id="connect-note" placeholder="Mention variety, harvest date, moisture reading, location..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-buyer-connect')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Direct Lead</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,142 @@
+<!-- Module 2: Procurement Management View -->
+<div class="module-procurement-view">
+
+  <!-- Active Queue & Booking Actions Banner -->
+  <div class="procurement-top-grid">
+    
+    <!-- Live Queue Token Card -->
+    <div class="card queue-tracker-card" id="queue-tracker-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🎫</span> Live Procurement Queue Token
+        </div>
+        <span class="badge badge-primary" id="queue-live-badge">Live Center Tracking</span>
+      </div>
+      <div id="queue-status-content">
+        <!-- Loaded dynamically by procurement.js -->
+        <div class="empty-state" style="padding: 1.5rem;">
+          <p style="color: var(--text-muted);">No active queue token for today.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Quick Action -->
+    <div class="card booking-cta-card">
+      <div class="booking-cta-content">
+        <div class="booking-cta-icon">🏪</div>
+        <div>
+          <h3>Book APMC Mandi Slot</h3>
+          <p>Avoid long mandi lines by booking your government procurement slot online.</p>
+        </div>
+        <button class="btn btn-primary btn-lg" id="btn-open-book-slot">
+          📅 Book Procurement Slot
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Applications & Status Progress Tracker -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <span>📋</span> My Procurement Applications & Status Tracker
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="ProcurementModule.loadApplications()">
+        ↻ Refresh Status
+      </button>
+    </div>
+    <div id="applications-list-container">
+      <!-- Dynamic list of applications with interactive 6-step progress bars -->
+    </div>
+  </div>
+
+  <!-- Procurement Centres Directory -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <span>🏛️</span> Official Government & APMC Procurement Centres
+      </div>
+      <div class="centre-filter-group">
+        <select class="form-control" id="centre-filter-crop" style="min-height: 36px; padding: 0.25rem 0.75rem; font-size: 0.85rem;">
+          <option value="">All Crops</option>
+          <option value="Wheat">Wheat</option>
+          <option value="Mustard">Mustard</option>
+          <option value="Paddy">Paddy / Rice</option>
+          <option value="Cotton">Cotton</option>
+          <option value="Soyabean">Soyabean</option>
+        </select>
+      </div>
+    </div>
+    <div class="centres-grid" id="centres-list-container">
+      <!-- Dynamic centre cards -->
+    </div>
+  </div>
+
+  <!-- Slot Booking Modal (5-Step Flow) -->
+  <div class="modal-overlay" id="modal-book-slot">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🏪 Book Procurement Slot</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-book-slot')">&times;</button>
+      </div>
+      <form id="form-book-slot">
+        <div class="modal-body">
+          <div class="booking-wizard-steps">
+            <span class="step-indicator">Step 1: Centre</span> →
+            <span class="step-indicator">Step 2: Crop</span> →
+            <span class="step-indicator">Step 3: Date & Slot</span>
+          </div>
+
+          <!-- Step 1: Select Centre -->
+          <div class="form-group">
+            <label class="form-label">1. Select Procurement Centre *</label>
+            <select class="form-control" id="book-centre-select" required>
+              <option value="">-- Choose Mandi / Centre --</option>
+            </select>
+          </div>
+
+          <!-- Step 2: Select Crop -->
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">2. Select Crop *</label>
+              <select class="form-control" id="book-crop-select" required>
+                <option value="">-- Choose Crop --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estimated Quantity (Quintals) *</label>
+              <input type="number" step="1" min="1" class="form-control" id="book-quantity" required placeholder="e.g. 30">
+            </div>
+          </div>
+
+          <!-- Step 3: Date & Time Slot -->
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">3. Booking Date *</label>
+              <input type="date" class="form-control" id="book-date" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">4. Select Time Slot *</label>
+              <select class="form-control" id="book-slot-select" required>
+                <option value="08:00 AM - 10:00 AM">08:00 AM - 10:00 AM (Morning Slot)</option>
+                <option value="10:00 AM - 12:00 PM" selected>10:00 AM - 12:00 PM (Midday Slot)</option>
+                <option value="12:00 PM - 02:00 PM">12:00 PM - 02:00 PM (Afternoon Slot)</option>
+                <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM (Evening Slot)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="booking-notice-box">
+            💡 <strong>Note:</strong> Once booked, an official Token Number will be generated. You will be notified via SMS when your turn arrives at the weighbridge.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-book-slot')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Confirm & Generate Token</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

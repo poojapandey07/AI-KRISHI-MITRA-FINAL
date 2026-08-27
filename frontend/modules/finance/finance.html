@@ -1,0 +1,126 @@
+<!-- Module 3: Krishi Finance View -->
+<div class="module-finance-view">
+
+  <!-- Finance Overview Header -->
+  <div class="finance-overview-grid">
+
+    <!-- Linked Bank Account Card -->
+    <div class="card bank-account-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🏦</span> Primary Agricultural Bank Account
+        </div>
+        <div id="bank-verification-pill">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+      <div id="bank-account-content">
+        <!-- Rendered by finance.js -->
+      </div>
+    </div>
+
+    <!-- Payout Highlights Banner -->
+    <div class="card finance-stats-card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>💰</span> Direct Procurement DBT Payouts
+        </div>
+      </div>
+      <div class="finance-stats-body">
+        <div class="stat-payout-box">
+          <span class="payout-num" id="total-payout-credited">₹0</span>
+          <span class="payout-lbl">Total Credited</span>
+        </div>
+        <div class="stat-payout-box">
+          <span class="payout-num" id="total-payout-processing" style="color: var(--warning-600);">₹0</span>
+          <span class="payout-lbl">In Processing</span>
+        </div>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem;">
+        🔒 Direct Bank Transfers are executed through RBI-regulated PFMS/DBT agricultural corridors.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Procurement Payment Tracking & History -->
+  <div class="card">
+    <div class="card-header" style="flex-wrap: wrap; gap: 0.75rem;">
+      <div class="card-title">
+        <span>📜</span> Procurement Settlement History & Live Tracking
+      </div>
+      <!-- Category Filter Tabs -->
+      <div class="payment-filter-pills" id="payment-filter-group">
+        <button class="filter-pill active" data-filter="all">All Settlements</button>
+        <button class="filter-pill" data-filter="processing">Processing</button>
+        <button class="filter-pill" data-filter="credited">Credited</button>
+        <button class="filter-pill" data-filter="failed">Failed</button>
+      </div>
+    </div>
+    
+    <div class="table-responsive">
+      <table class="table" id="payments-table">
+        <thead>
+          <tr>
+            <th>Payment ID</th>
+            <th>Procurement Ref</th>
+            <th>Crop & Qty</th>
+            <th>Linked Bank</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="payments-tbody">
+          <!-- Dynamic payment rows loaded by finance.js -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Link / Update Bank Account Modal -->
+  <div class="modal-overlay" id="modal-link-bank">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🏦 Link Agricultural Bank Account</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-link-bank')">&times;</button>
+      </div>
+      <form id="form-link-bank">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Bank Name *</label>
+            <input type="text" class="form-control" id="bank-name-input" required placeholder="e.g. State Bank of India, HDFC Bank, PNB">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Account Holder Name (as in Passbook) *</label>
+            <input type="text" class="form-control" id="bank-holder-input" required placeholder="e.g. Ramesh Kumar">
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Bank Account Number *</label>
+              <input type="password" class="form-control" id="bank-acc-input" required placeholder="Enter 9 to 18 digits" minlength="9" maxlength="18">
+              <span class="form-hint">Stored with encryption. Only last 4 digits are visible after saving.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirm Account Number *</label>
+              <input type="text" class="form-control" id="bank-acc-confirm" required placeholder="Re-enter account number">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">11-Digit IFSC Code *</label>
+            <input type="text" class="form-control" id="bank-ifsc-input" required placeholder="e.g. SBIN0001234" maxlength="11" style="text-transform: uppercase;">
+          </div>
+          <div class="booking-notice-box">
+            🛡️ <strong>NPCI Security:</strong> Bank details are verified via penny-drop validation before procurement settlements are disbursed.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-link-bank')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save & Initiate Verification</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

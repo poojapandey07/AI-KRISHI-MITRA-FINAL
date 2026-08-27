@@ -1,0 +1,79 @@
+<!-- Module 4: AI Standards & Recommendation View -->
+<div class="module-standards-view">
+
+  <!-- Interactive Quality Standards Assessment Tool -->
+  <div class="card standards-hero-card">
+    <div class="card-header">
+      <div class="card-title">
+        <span>🤖</span> AI Crop Quality & Procurement Standards Grader
+      </div>
+      <span class="badge badge-primary">FCI & Agmark Compliant</span>
+    </div>
+    
+    <div class="standards-input-container">
+      <form id="form-check-standards">
+        <div class="grid-3">
+          <div class="form-group">
+            <label class="form-label">Crop Name *</label>
+            <select class="form-control" id="ai-std-crop" required>
+              <option value="Wheat" selected>Wheat (गेहूं)</option>
+              <option value="Mustard">Mustard (सरसों)</option>
+              <option value="Paddy (Basmati)">Paddy / Basmati (धान)</option>
+              <option value="Cotton">Cotton (कपास)</option>
+              <option value="Soyabean">Soyabean (सोयाबीन)</option>
+              <option value="Maize">Maize (मक्का)</option>
+              <option value="Chana (Chickpea)">Chana (चना)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Variety (Optional)</label>
+            <input type="text" class="form-control" id="ai-std-variety" placeholder="e.g. HD-2967, Pusa 1121">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moisture Content (%) *</label>
+            <input type="number" step="0.1" min="1" max="40" class="form-control" id="ai-std-moisture" required value="11.8">
+            <span class="form-hint">FCI Standard: &le; 12.0% for Wheat</span>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="form-group">
+            <label class="form-label">Foreign Matter / Chaff (%) *</label>
+            <input type="number" step="0.1" min="0" max="25" class="form-control" id="ai-std-foreign" required value="0.6">
+            <span class="form-hint">Agmark Max: 0.75%</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Damaged / Discolored Grains (%) *</label>
+            <input type="number" step="0.1" min="0" max="25" class="form-control" id="ai-std-damaged" required value="1.2">
+            <span class="form-hint">FCI FAQ Limit: 2.0%</span>
+          </div>
+          <div class="form-group" style="display: flex; align-items: flex-end;">
+            <button type="submit" class="btn btn-primary" style="width: 100%; min-height: 42px;">
+              ⚡ Run AI Quality Standards Test
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- AI Diagnostic Assessment Results -->
+    <div id="standards-result-container" style="display: none; margin-top: 1.5rem;">
+      <!-- Populated dynamically by standards.js -->
+    </div>
+  </div>
+
+  <!-- AI Agronomy & Post-Harvest Recommendations -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <span>💡</span> Personalized AI Agronomy & Market Advisory
+      </div>
+      <span class="badge badge-success">Tailored for Your Active Crops</span>
+    </div>
+    
+    <div class="recommendations-grid" id="recommendations-container">
+      <!-- Dynamic advisory cards loaded by standards.js -->
+    </div>
+  </div>
+
+</div>

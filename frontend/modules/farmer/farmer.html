@@ -1,0 +1,186 @@
+<!-- Module 1: Farmer & Authentication View -->
+<div class="module-farmer-view">
+  
+  <!-- Profile Header Card -->
+  <div class="card profile-hero-card">
+    <div class="profile-hero-content">
+      <div class="profile-avatar-large" id="profile-avatar-letter">RK</div>
+      <div class="profile-info-block">
+        <div class="profile-header-tags">
+          <span class="badge badge-primary" id="profile-badge-id">FMR-XXXXXX</span>
+          <span class="badge badge-success">Active Farmer</span>
+        </div>
+        <h2 id="profile-display-name">Ramesh Kumar</h2>
+        <p class="profile-location-text">
+          📍 <span id="profile-display-location">Nilokheri, Karnal, Haryana</span>
+        </p>
+        <div class="profile-contact-row">
+          <span>📞 <strong id="profile-display-mobile">9876543210</strong></span>
+          <span id="profile-email-container">✉️ <span id="profile-display-email">ramesh.kumar@example.com</span></span>
+        </div>
+      </div>
+      <div class="profile-stats-block">
+        <div class="stat-box">
+          <span class="stat-number" id="profile-stat-land">4.5</span>
+          <span class="stat-label">Total Land (Acres)</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="profile-stat-crops">2</span>
+          <span class="stat-label">Active Crops</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Farm Assets Section (Land & Crops) -->
+  <div class="farm-assets-grid">
+    
+    <!-- Land Parcels Column -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🏞️</span> Registered Land Parcels
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-open-add-land">
+          + Add Land Parcel
+        </button>
+      </div>
+      <div id="land-list-container">
+        <!-- Dynamic land cards loaded by farmer.js -->
+      </div>
+    </div>
+
+    <!-- Crops Column -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>🌾</span> Cultivated Crops
+        </div>
+        <button class="btn btn-primary btn-sm" id="btn-open-add-crop">
+          + Register New Crop
+        </button>
+      </div>
+      <div id="crops-list-container">
+        <!-- Dynamic crop cards loaded by farmer.js -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Add Land Modal -->
+  <div class="modal-overlay" id="modal-add-land">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🏞️ Add Land Parcel</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-add-land')">&times;</button>
+      </div>
+      <form id="form-add-land">
+        <div class="modal-body">
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Total Land Area *</label>
+              <input type="number" step="0.1" min="0.1" class="form-control" id="land-area" required placeholder="e.g. 3.5">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Unit *</label>
+              <select class="form-control" id="land-unit">
+                <option value="Acres" selected>Acres</option>
+                <option value="Hectares">Hectares</option>
+                <option value="Bigha">Bigha</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Soil Type *</label>
+              <select class="form-control" id="land-soil" required>
+                <option value="Alluvial Soil (Loamy)">Alluvial Soil (Loamy)</option>
+                <option value="Black Cotton Soil">Black Cotton Soil</option>
+                <option value="Red & Yellow Sandy Soil">Red & Yellow Sandy Soil</option>
+                <option value="Clayey Wet Soil">Clayey Wet Soil</option>
+                <option value="Silt Loam">Silt Loam</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Irrigation Type *</label>
+              <select class="form-control" id="land-irrigation" required>
+                <option value="Drip Irrigation">Drip Irrigation</option>
+                <option value="Sprinkler System">Sprinkler System</option>
+                <option value="Tube-well / Borewell">Tube-well / Borewell</option>
+                <option value="Canal Water Feed">Canal Water Feed</option>
+                <option value="Rainfed (Monsoon)">Rainfed (Monsoon)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Land Parcel Location / Khasra No. *</label>
+            <input type="text" class="form-control" id="land-location" required placeholder="e.g. Khasra 142/3, North Field, Village Nilokheri">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-add-land')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save Land Parcel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Crop Modal -->
+  <div class="modal-overlay" id="modal-add-crop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">🌾 Register Cultivated Crop</h3>
+        <button class="modal-close" onclick="utils.closeModal('modal-add-crop')">&times;</button>
+      </div>
+      <form id="form-add-crop">
+        <div class="modal-body">
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Crop Name *</label>
+              <select class="form-control" id="crop-name" required>
+                <option value="Wheat">Wheat (गेहूं)</option>
+                <option value="Paddy (Basmati)">Paddy / Rice (धान)</option>
+                <option value="Mustard">Mustard (सरसों)</option>
+                <option value="Cotton">Cotton (कपास)</option>
+                <option value="Soyabean">Soyabean (सोयाबीन)</option>
+                <option value="Maize">Maize (मक्का)</option>
+                <option value="Chana (Chickpea)">Chana / Gram (चना)</option>
+                <option value="Tomato">Tomato (टमाटर)</option>
+                <option value="Onion">Onion (प्याज)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Crop Variety *</label>
+              <input type="text" class="form-control" id="crop-variety" required placeholder="e.g. HD-2967, Pusa Bold, PBW-550">
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Sowing Date *</label>
+              <input type="date" class="form-control" id="crop-sowing" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Expected Harvest Date *</label>
+              <input type="date" class="form-control" id="crop-harvest" required>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Cultivated Area (Acres) *</label>
+              <input type="number" step="0.1" min="0.1" class="form-control" id="crop-area" required placeholder="e.g. 2.5">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estimated Yield (Quintals)</label>
+              <input type="number" step="0.5" min="0" class="form-control" id="crop-yield" placeholder="e.g. 50">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="utils.closeModal('modal-add-crop')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Register Crop</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
