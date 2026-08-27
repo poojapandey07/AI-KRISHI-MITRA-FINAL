@@ -7,6 +7,8 @@ logger = logging.getLogger("ai_krishi_mitra.seed")
 
 def seed_initial_data():
     try:
+        now = datetime.now(timezone.utc)
+
         # 1. Procurement Centres
         centres_count = db_manager.procurement_centres.count_documents({})
         if centres_count == 0:
@@ -24,7 +26,7 @@ def seed_initial_data():
                     "contactPerson": "Shri Rajesh Sharma (Centre Manager)",
                     "contactPhone": "+91 94160 23456",
                     "status": "Operational",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 },
                 {
                     "centreId": "PRC-CTR-102",
@@ -39,7 +41,7 @@ def seed_initial_data():
                     "contactPerson": "Sardar Gurpreet Singh",
                     "contactPhone": "+91 98140 76543",
                     "status": "Operational",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 },
                 {
                     "centreId": "PRC-CTR-103",
@@ -54,7 +56,7 @@ def seed_initial_data():
                     "contactPerson": "Shri Nitin Patil",
                     "contactPhone": "+91 98220 98765",
                     "status": "Operational",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 },
                 {
                     "centreId": "PRC-CTR-104",
@@ -69,7 +71,7 @@ def seed_initial_data():
                     "contactPerson": "Shri Anand Verma",
                     "contactPhone": "+91 94250 11223",
                     "status": "Operational",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 },
                 {
                     "centreId": "PRC-CTR-105",
@@ -84,7 +86,7 @@ def seed_initial_data():
                     "contactPerson": "Shri Bhavesh Patel",
                     "contactPhone": "+91 97270 44556",
                     "status": "Operational",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 }
             ]
             db_manager.procurement_centres.insert_many(centres)
@@ -108,7 +110,7 @@ def seed_initial_data():
                     "trend": "up",
                     "change": "+₹45",
                     "arrivalVolumeQuintals": 3200,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 },
                 {
                     "crop": "Paddy (Basmati)",
@@ -124,7 +126,7 @@ def seed_initial_data():
                     "trend": "up",
                     "change": "+₹80",
                     "arrivalVolumeQuintals": 1850,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 },
                 {
                     "crop": "Mustard",
@@ -140,7 +142,7 @@ def seed_initial_data():
                     "trend": "flat",
                     "change": "₹0",
                     "arrivalVolumeQuintals": 1200,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 },
                 {
                     "crop": "Cotton",
@@ -156,7 +158,7 @@ def seed_initial_data():
                     "trend": "down",
                     "change": "-₹60",
                     "arrivalVolumeQuintals": 950,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 },
                 {
                     "crop": "Soyabean",
@@ -172,7 +174,7 @@ def seed_initial_data():
                     "trend": "up",
                     "change": "+₹35",
                     "arrivalVolumeQuintals": 4100,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 },
                 {
                     "crop": "Chana (Chickpea)",
@@ -188,7 +190,7 @@ def seed_initial_data():
                     "trend": "up",
                     "change": "+₹50",
                     "arrivalVolumeQuintals": 1400,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 },
                 {
                     "crop": "Maize",
@@ -204,7 +206,7 @@ def seed_initial_data():
                     "trend": "down",
                     "change": "-₹25",
                     "arrivalVolumeQuintals": 800,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 },
                 {
                     "crop": "Tomato",
@@ -220,7 +222,7 @@ def seed_initial_data():
                     "trend": "up",
                     "change": "+₹150",
                     "arrivalVolumeQuintals": 2600,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 },
                 {
                     "crop": "Onion",
@@ -236,7 +238,7 @@ def seed_initial_data():
                     "trend": "down",
                     "change": "-₹90",
                     "arrivalVolumeQuintals": 5400,
-                    "lastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+                    "lastUpdated": now.strftime("%Y-%m-%d %H:%M")
                 }
             ]
             db_manager.market_prices.insert_many(prices)
@@ -261,7 +263,7 @@ def seed_initial_data():
                     "status": "Urgent",
                     "contactEmail": "sourcing.north@itcagri.com",
                     "contactPhone": "+91 1800 200 4567",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 },
                 {
                     "buyerId": "BYR-702",
@@ -278,7 +280,7 @@ def seed_initial_data():
                     "status": "Accepting Bids",
                     "contactEmail": "procurement@patanjalifoods.com",
                     "contactPhone": "+91 1800 180 4108",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 },
                 {
                     "buyerId": "BYR-703",
@@ -295,7 +297,7 @@ def seed_initial_data():
                     "status": "Open",
                     "contactEmail": "farmer.connect@bigbasket.com",
                     "contactPhone": "+91 80 4000 7000",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 },
                 {
                     "buyerId": "BYR-704",
@@ -312,135 +314,426 @@ def seed_initial_data():
                     "status": "Open",
                     "contactEmail": "india_grain_sourcing@cargill.com",
                     "contactPhone": "+91 124 409 0000",
-                    "created_at": datetime.now(timezone.utc)
+                    "created_at": now
                 }
             ]
             db_manager.buyers.insert_many(buyers)
             logger.info("Seeded buyer listings successfully.")
 
-        # 4. Demo Farmer Account
-        demo_farmer = db_manager.farmers.find_one({"mobile": "9876543210"})
-        if not demo_farmer:
-            farmer_id = "FMR-88012"
-            now = datetime.now(timezone.utc)
-            farmer_doc = {
-                "farmerId": farmer_id,
+        # 4. PRE-SEED 6 REAL DEMO FARMER ACCOUNTS (For the 6 team members)
+        demo_accounts = [
+            {
+                "farmerId": "FMR-88012",
                 "fullName": "Ramesh Kumar",
                 "mobile": "9876543210",
                 "email": "ramesh.kumar@example.com",
-                "hashedPassword": hash_password("Password@123"),
+                "password": "Password@123",
                 "state": "Haryana",
                 "district": "Karnal",
                 "village": "Nilokheri",
-                "created_at": now,
-                "updated_at": now
-            }
-            db_manager.farmers.insert_one(farmer_doc)
-
-            # Pre-seed Land
-            db_manager.land_records.insert_one({
-                "landId": "LND-1001",
-                "farmerId": farmer_id,
-                "area": 4.5,
-                "unit": "Acres",
-                "soilType": "Alluvial Soil (Loamy)",
-                "irrigationType": "Tube-well with Drip System",
-                "location": "Khasra No. 142/3, Nilokheri, Karnal",
-                "created_at": now
-            })
-
-            # Pre-seed Crops
-            crop_id_1 = "CRP-2001"
-            crop_id_2 = "CRP-2002"
-            db_manager.crops.insert_many([
-                {
-                    "cropId": crop_id_1,
-                    "farmerId": farmer_id,
-                    "cropName": "Wheat",
-                    "variety": "HD-2967 (High Yielding)",
-                    "sowingDate": (now - timedelta(days=90)).strftime("%Y-%m-%d"),
-                    "expectedHarvest": (now + timedelta(days=25)).strftime("%Y-%m-%d"),
-                    "cultivatedArea": 3.0,
-                    "areaUnit": "Acres",
-                    "estimatedYieldQuintals": 65.0,
-                    "created_at": now
+                "land": {
+                    "landId": "LND-1001",
+                    "area": 4.5,
+                    "unit": "Acres",
+                    "soilType": "Alluvial Soil (Loamy)",
+                    "irrigationType": "Tube-well with Drip System",
+                    "location": "Khasra No. 142/3, Nilokheri, Karnal"
                 },
-                {
-                    "cropId": crop_id_2,
-                    "farmerId": farmer_id,
-                    "cropName": "Mustard",
-                    "variety": "Pusa Bold",
-                    "sowingDate": (now - timedelta(days=105)).strftime("%Y-%m-%d"),
-                    "expectedHarvest": (now + timedelta(days=10)).strftime("%Y-%m-%d"),
-                    "cultivatedArea": 1.5,
-                    "areaUnit": "Acres",
-                    "estimatedYieldQuintals": 18.0,
-                    "created_at": now
+                "crops": [
+                    {"cropId": "CRP-2001", "cropName": "Wheat", "variety": "HD-2967", "sowing": 90, "harvest": 25, "area": 3.0, "yield": 65.0},
+                    {"cropId": "CRP-2002", "cropName": "Mustard", "variety": "Pusa Bold", "sowing": 105, "harvest": 10, "area": 1.5, "yield": 18.0}
+                ],
+                "bank": {
+                    "bankAccountId": "BNK-5012",
+                    "bankName": "State Bank of India",
+                    "accountNumber": "50100234891234",
+                    "ifscCode": "SBIN0001234",
+                    "branch": "Nilokheri Main Branch",
+                    "status": "Verified"
+                },
+                "procurement": {
+                    "applicationId": "APP-44210",
+                    "procurementId": "PRC-00124",
+                    "centreId": "PRC-CTR-101",
+                    "centreName": "Karnal APMC Grain Procurement Hub",
+                    "cropId": "CRP-2001",
+                    "cropName": "Wheat",
+                    "variety": "HD-2967",
+                    "qty": 30.0,
+                    "slot": "10:00 AM - 12:00 PM",
+                    "token": "TKN-042",
+                    "queue": 3,
+                    "wait": 35,
+                    "status": "Payment Initiated",
+                    "amount": 72750.0
+                },
+                "payment": {
+                    "paymentId": "PAY-00891",
+                    "amount": 72750.0,
+                    "status": "Payment Initiated",
+                    "remarks": "Procurement settlement for 30 Quintals Wheat Grade A at Karnal APMC Hub"
                 }
-            ])
+            },
+            {
+                "farmerId": "FMR-88013",
+                "fullName": "Gurpreet Singh",
+                "mobile": "9876543211",
+                "email": "gurpreet.singh@example.com",
+                "password": "Password@123",
+                "state": "Punjab",
+                "district": "Ludhiana",
+                "village": "Khanna",
+                "land": {
+                    "landId": "LND-1002",
+                    "area": 8.0,
+                    "unit": "Acres",
+                    "soilType": "Alluvial Loam",
+                    "irrigationType": "Canal Water Feed",
+                    "location": "GT Road, Khanna Kalan, Ludhiana"
+                },
+                "crops": [
+                    {"cropId": "CRP-2003", "cropName": "Wheat", "variety": "PBW-550", "sowing": 95, "harvest": 20, "area": 5.0, "yield": 110.0},
+                    {"cropId": "CRP-2004", "cropName": "Maize", "variety": "Hybrid Yellow", "sowing": 110, "harvest": 15, "area": 3.0, "yield": 55.0}
+                ],
+                "bank": {
+                    "bankAccountId": "BNK-5013",
+                    "bankName": "Punjab National Bank",
+                    "accountNumber": "0123002100876543",
+                    "ifscCode": "PUNB0012300",
+                    "branch": "Khanna Mandi Branch",
+                    "status": "Verified"
+                },
+                "procurement": {
+                    "applicationId": "APP-44211",
+                    "procurementId": "PRC-00125",
+                    "centreId": "PRC-CTR-102",
+                    "centreName": "Ludhiana Central FCI Procurement Depot",
+                    "cropId": "CRP-2003",
+                    "cropName": "Wheat",
+                    "variety": "PBW-550",
+                    "qty": 50.0,
+                    "slot": "08:30 AM - 10:30 AM",
+                    "token": "TKN-018",
+                    "queue": 2,
+                    "wait": 20,
+                    "status": "Slot Confirmed",
+                    "amount": 121250.0
+                },
+                "payment": None
+            },
+            {
+                "farmerId": "FMR-88014",
+                "fullName": "Suresh Patel",
+                "mobile": "9876543212",
+                "email": "suresh.patel@example.com",
+                "password": "Password@123",
+                "state": "Gujarat",
+                "district": "Rajkot",
+                "village": "Gondal",
+                "land": {
+                    "landId": "LND-1003",
+                    "area": 5.5,
+                    "unit": "Acres",
+                    "soilType": "Black Cotton Soil",
+                    "irrigationType": "Drip Irrigation",
+                    "location": "Survey 88, Gondal Rural, Rajkot"
+                },
+                "crops": [
+                    {"cropId": "CRP-2005", "cropName": "Cotton", "variety": "Bt Cotton 6", "sowing": 120, "harvest": 10, "area": 3.5, "yield": 42.0},
+                    {"cropId": "CRP-2006", "cropName": "Mustard", "variety": "Pusa Bold", "sowing": 80, "harvest": 30, "area": 2.0, "yield": 24.0}
+                ],
+                "bank": {
+                    "bankAccountId": "BNK-5014",
+                    "bankName": "Bank of Baroda",
+                    "accountNumber": "04560100098765",
+                    "ifscCode": "BARB0GONDAL",
+                    "branch": "Gondal Main Branch",
+                    "status": "Verified"
+                },
+                "procurement": {
+                    "applicationId": "APP-44212",
+                    "procurementId": "PRC-00126",
+                    "centreId": "PRC-CTR-105",
+                    "centreName": "Rajkot APMC Saurashtra Hub",
+                    "cropId": "CRP-2005",
+                    "cropName": "Cotton",
+                    "variety": "Bt Cotton 6",
+                    "qty": 25.0,
+                    "slot": "08:00 AM - 10:00 AM",
+                    "token": "TKN-005",
+                    "queue": 0,
+                    "wait": 0,
+                    "status": "Procurement Accepted",
+                    "amount": 180000.0
+                },
+                "payment": {
+                    "paymentId": "PAY-00892",
+                    "amount": 180000.0,
+                    "status": "Payment Credited",
+                    "remarks": "DBT Direct Bank Credit for 25 Quintals Bt Cotton Grade A"
+                }
+            },
+            {
+                "farmerId": "FMR-88015",
+                "fullName": "Nitin Patil",
+                "mobile": "9876543213",
+                "email": "nitin.patil@example.com",
+                "password": "Password@123",
+                "state": "Maharashtra",
+                "district": "Nashik",
+                "village": "Dindori",
+                "land": {
+                    "landId": "LND-1004",
+                    "area": 6.0,
+                    "unit": "Acres",
+                    "soilType": "Loamy Clay Soil",
+                    "irrigationType": "Sprinkler System",
+                    "location": "Gat No. 204, Dindori Taluka, Nashik"
+                },
+                "crops": [
+                    {"cropId": "CRP-2007", "cropName": "Tomato", "variety": "Hybrid Red", "sowing": 60, "harvest": 15, "area": 3.0, "yield": 90.0},
+                    {"cropId": "CRP-2008", "cropName": "Onion", "variety": "Red Nashik", "sowing": 75, "harvest": 20, "area": 3.0, "yield": 80.0}
+                ],
+                "bank": {
+                    "bankAccountId": "BNK-5015",
+                    "bankName": "HDFC Bank",
+                    "accountNumber": "50100456789012",
+                    "ifscCode": "HDFC0000123",
+                    "branch": "Nashik City Branch",
+                    "status": "Verified"
+                },
+                "procurement": {
+                    "applicationId": "APP-44213",
+                    "procurementId": "PRC-00127",
+                    "centreId": "PRC-CTR-103",
+                    "centreName": "Nashik Kisan Mandi & Cold Chain Centre",
+                    "cropId": "CRP-2008",
+                    "cropName": "Onion",
+                    "variety": "Red Nashik",
+                    "qty": 40.0,
+                    "slot": "09:00 AM - 11:00 AM",
+                    "token": "TKN-031",
+                    "queue": 1,
+                    "wait": 15,
+                    "status": "Quality Checked",
+                    "amount": 94000.0
+                },
+                "payment": None
+            },
+            {
+                "farmerId": "FMR-88016",
+                "fullName": "Anand Verma",
+                "mobile": "9876543214",
+                "email": "anand.verma@example.com",
+                "password": "Password@123",
+                "state": "Madhya Pradesh",
+                "district": "Indore",
+                "village": "Sanwer",
+                "land": {
+                    "landId": "LND-1005",
+                    "area": 7.2,
+                    "unit": "Acres",
+                    "soilType": "Deep Black Malwa Soil",
+                    "irrigationType": "Tube-well with Drip System",
+                    "location": "Gram Sanwer, Tehsil Sanwer, Indore"
+                },
+                "crops": [
+                    {"cropId": "CRP-2009", "cropName": "Soyabean", "variety": "JS-335 Yellow", "sowing": 85, "harvest": 20, "area": 4.5, "yield": 45.0},
+                    {"cropId": "CRP-2010", "cropName": "Chana (Chickpea)", "variety": "Desi Bold", "sowing": 95, "harvest": 15, "area": 2.7, "yield": 28.0}
+                ],
+                "bank": {
+                    "bankAccountId": "BNK-5016",
+                    "bankName": "Canara Bank",
+                    "accountNumber": "12341010098765",
+                    "ifscCode": "CNRB0001234",
+                    "branch": "Sanwer Indore Branch",
+                    "status": "Verified"
+                },
+                "procurement": {
+                    "applicationId": "APP-44214",
+                    "procurementId": "PRC-00128",
+                    "centreId": "PRC-CTR-104",
+                    "centreName": "Indore Malwa Krishi Mandi Centre",
+                    "cropId": "CRP-2009",
+                    "cropName": "Soyabean",
+                    "variety": "JS-335 Yellow",
+                    "qty": 35.0,
+                    "slot": "11:00 AM - 01:00 PM",
+                    "token": "TKN-022",
+                    "queue": 2,
+                    "wait": 25,
+                    "status": "Produce Received",
+                    "amount": 162750.0
+                },
+                "payment": None
+            },
+            {
+                "farmerId": "FMR-88017",
+                "fullName": "Pooja Sharma",
+                "mobile": "9876543215",
+                "email": "pooja.sharma@example.com",
+                "password": "Password@123",
+                "state": "Uttar Pradesh",
+                "district": "Varanasi",
+                "village": "Rohania",
+                "land": {
+                    "landId": "LND-1006",
+                    "area": 3.8,
+                    "unit": "Acres",
+                    "soilType": "Alluvial Ganga Basin Soil",
+                    "irrigationType": "Tube-well with Sprinkler",
+                    "location": "Khasra 512, Rohania Village, Varanasi"
+                },
+                "crops": [
+                    {"cropId": "CRP-2011", "cropName": "Mustard", "variety": "PM-30 High Oil", "sowing": 100, "harvest": 10, "area": 2.0, "yield": 22.0},
+                    {"cropId": "CRP-2012", "cropName": "Wheat", "variety": "Sharbati Gold", "sowing": 90, "harvest": 25, "area": 1.8, "yield": 38.0}
+                ],
+                "bank": {
+                    "bankAccountId": "BNK-5017",
+                    "bankName": "Union Bank of India",
+                    "accountNumber": "301102010098765",
+                    "ifscCode": "UBIN0530115",
+                    "branch": "Varanasi Cantt Branch",
+                    "status": "Verified"
+                },
+                "procurement": {
+                    "applicationId": "APP-44215",
+                    "procurementId": "PRC-00129",
+                    "centreId": "PRC-CTR-101",
+                    "centreName": "Karnal APMC Grain Procurement Hub",
+                    "cropId": "CRP-2011",
+                    "cropName": "Mustard",
+                    "variety": "PM-30 High Oil",
+                    "qty": 20.0,
+                    "slot": "02:00 PM - 04:00 PM",
+                    "token": "TKN-014",
+                    "queue": 1,
+                    "wait": 10,
+                    "status": "Payment Initiated",
+                    "amount": 113000.0
+                },
+                "payment": {
+                    "paymentId": "PAY-00893",
+                    "amount": 113000.0,
+                    "status": "Payment Processing",
+                    "remarks": "PFMS DBT Electronic Clearing in progress for 20 Quintals Mustard"
+                }
+            }
+        ]
 
-            # Pre-seed Verified Bank Account
-            raw_acc = "50100234891234"
-            db_manager.bank_accounts.insert_one({
-                "bankAccountId": "BNK-5012",
-                "farmerId": farmer_id,
-                "bankName": "State Bank of India",
-                "accountHolder": "Ramesh Kumar",
-                "accountNumber": raw_acc,
-                "maskedAccountNumber": mask_account_number(raw_acc),
-                "ifscCode": "SBIN0001234",
-                "branchName": "Nilokheri Main Branch",
-                "verificationStatus": "Verified",
-                "verifiedAt": now.isoformat(),
-                "created_at": now
-            })
+        # Loop and upsert all 6 demo farmers
+        for acc in demo_accounts:
+            existing = db_manager.farmers.find_one({"mobile": acc["mobile"]})
+            if not existing:
+                fid = acc["farmerId"]
+                f_doc = {
+                    "farmerId": fid,
+                    "fullName": acc["fullName"],
+                    "mobile": acc["mobile"],
+                    "email": acc["email"],
+                    "hashedPassword": hash_password(acc["password"]),
+                    "state": acc["state"],
+                    "district": acc["district"],
+                    "village": acc["village"],
+                    "created_at": now,
+                    "updated_at": now
+                }
+                db_manager.farmers.insert_one(f_doc)
 
-            # Pre-seed a Procurement Application
-            app_id = "APP-44210"
-            prc_id = "PRC-00124"
-            pay_id = "PAY-00891"
-            db_manager.procurement_applications.insert_one({
-                "applicationId": app_id,
-                "procurementId": prc_id,
-                "farmerId": farmer_id,
-                "centreId": "PRC-CTR-101",
-                "centreName": "Karnal APMC Grain Procurement Hub",
-                "cropId": crop_id_1,
-                "cropName": "Wheat",
-                "variety": "HD-2967 (High Yielding)",
-                "quantityQuintals": 30.0,
-                "bookingDate": now.strftime("%Y-%m-%d"),
-                "timeSlot": "10:00 AM - 12:00 PM",
-                "tokenNumber": "TKN-042",
-                "queuePosition": 3,
-                "estimatedWaitMinutes": 35,
-                "status": "Payment Initiated",
-                "qualityGrade": "Grade A (FAQ Passed)",
-                "moisturePercent": 11.4,
-                "created_at": now
-            })
+                # Land
+                l_info = acc["land"]
+                db_manager.land_records.insert_one({
+                    "landId": l_info["landId"],
+                    "farmerId": fid,
+                    "area": float(l_info["area"]),
+                    "unit": l_info["unit"],
+                    "soilType": l_info["soilType"],
+                    "irrigationType": l_info["irrigationType"],
+                    "location": l_info["location"],
+                    "created_at": now
+                })
 
-            # Pre-seed Payment linked to Procurement
-            db_manager.payments.insert_one({
-                "paymentId": pay_id,
-                "procurementId": prc_id,
-                "applicationId": app_id,
-                "farmerId": farmer_id,
-                "crop": "Wheat",
-                "quantityQuintals": 30.0,
-                "ratePerQuintal": 2425.0,
-                "amount": 72750.0,
-                "bankAccountId": "BNK-5012",
-                "bankName": "State Bank of India",
-                "maskedAccountNumber": mask_account_number(raw_acc),
-                "status": "Payment Initiated",
-                "initiatedAt": now.isoformat(),
-                "creditedAt": None,
-                "remarks": "Procurement settlement for 30 Quintals Wheat Grade A at Karnal APMC Hub",
-                "created_at": now
-            })
+                # Crops
+                for cr in acc["crops"]:
+                    db_manager.crops.insert_one({
+                        "cropId": cr["cropId"],
+                        "farmerId": fid,
+                        "cropName": cr["cropName"],
+                        "variety": cr["variety"],
+                        "sowingDate": (now - timedelta(days=cr["sowing"])).strftime("%Y-%m-%d"),
+                        "expectedHarvest": (now + timedelta(days=cr["harvest"])).strftime("%Y-%m-%d"),
+                        "cultivatedArea": float(cr["area"]),
+                        "areaUnit": "Acres",
+                        "estimatedYieldQuintals": float(cr["yield"]),
+                        "created_at": now
+                    })
 
-            logger.info("Seeded demo farmer Ramesh Kumar (9876543210) successfully.")
+                # Bank
+                b_info = acc["bank"]
+                raw_a = b_info["accountNumber"]
+                db_manager.bank_accounts.insert_one({
+                    "bankAccountId": b_info["bankAccountId"],
+                    "farmerId": fid,
+                    "bankName": b_info["bankName"],
+                    "accountHolder": acc["fullName"],
+                    "accountNumber": raw_a,
+                    "maskedAccountNumber": mask_account_number(raw_a),
+                    "ifscCode": b_info["ifscCode"],
+                    "branchName": b_info["branch"],
+                    "verificationStatus": b_info["status"],
+                    "verifiedAt": now.isoformat(),
+                    "created_at": now
+                })
+
+                # Procurement
+                p_info = acc["procurement"]
+                if p_info:
+                    db_manager.procurement_applications.insert_one({
+                        "applicationId": p_info["applicationId"],
+                        "procurementId": p_info["procurementId"],
+                        "farmerId": fid,
+                        "centreId": p_info["centreId"],
+                        "centreName": p_info["centreName"],
+                        "cropId": p_info["cropId"],
+                        "cropName": p_info["cropName"],
+                        "variety": p_info["variety"],
+                        "quantityQuintals": float(p_info["qty"]),
+                        "bookingDate": now.strftime("%Y-%m-%d"),
+                        "timeSlot": p_info["slot"],
+                        "tokenNumber": p_info["token"],
+                        "queuePosition": p_info["queue"],
+                        "estimatedWaitMinutes": p_info["wait"],
+                        "status": p_info["status"],
+                        "qualityGrade": "Grade A (FAQ Passed)",
+                        "moisturePercent": 11.4,
+                        "ratePerQuintal": round(p_info["amount"] / p_info["qty"], 2),
+                        "totalAmount": float(p_info["amount"]),
+                        "created_at": now
+                    })
+
+                # Payment
+                pay_info = acc["payment"]
+                if pay_info and p_info:
+                    db_manager.payments.insert_one({
+                        "paymentId": pay_info["paymentId"],
+                        "procurementId": p_info["procurementId"],
+                        "applicationId": p_info["applicationId"],
+                        "farmerId": fid,
+                        "crop": p_info["cropName"],
+                        "quantityQuintals": float(p_info["qty"]),
+                        "ratePerQuintal": round(pay_info["amount"] / p_info["qty"], 2),
+                        "amount": float(pay_info["amount"]),
+                        "bankAccountId": b_info["bankAccountId"],
+                        "bankName": b_info["bankName"],
+                        "maskedAccountNumber": mask_account_number(raw_a),
+                        "status": pay_info["status"],
+                        "initiatedAt": now.isoformat(),
+                        "creditedAt": now.isoformat() if pay_info["status"] == "Payment Credited" else None,
+                        "remarks": pay_info["remarks"],
+                        "created_at": now
+                    })
+
+                logger.info(f"Seeded demo farmer {acc['fullName']} ({acc['mobile']}) successfully.")
 
     except Exception as e:
         logger.error(f"Error during data seeding: {e}")

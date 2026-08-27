@@ -166,13 +166,20 @@ When started, the backend:
 
 ---
 
-## 👨‍🌾 Pre-Seeded Demo Account
+## 👨‍🌾 Pre-Seeded Demo Farmer Accounts (6 Accounts for 6 Teammates)
 
-You can log in immediately using the pre-seeded demo farmer credentials:
+The platform comes pre-seeded with **6 realistic farmer accounts** corresponding to different modules and agricultural regions in India. All accounts share the default password `Password@123`:
 
-- **Mobile:** `9876543210`
-- **Password:** `Password@123`
-- *(Or click the "⚡ Fill Demo Account" button on the login screen)*
+| # | Demo Farmer Name | Mobile Login | Password | State & Region | Primary Module / Focus | Pre-Configured Data |
+| :-: | :--- | :--- | :--- | :--- | :--- | :--- |
+| **1** | **Ramesh Kumar** | `9876543210` | `Password@123` | Karnal, Haryana | **Module 1: Farmer & Auth** | 4.5 Acres, Wheat & Mustard, Verified SBI Account |
+| **2** | **Gurpreet Singh** | `9876543211` | `Password@123` | Ludhiana, Punjab | **Module 2: Procurement** | 8.0 Acres, Token `TKN-018` at FCI Depot, Queue #2 |
+| **3** | **Suresh Patel** | `9876543212` | `Password@123` | Rajkot, Gujarat | **Module 3: Krishi Finance** | 5.5 Acres Cotton, Verified BOB Bank, ₹1.81L DBT Credited |
+| **4** | **Nitin Patil** | `9876543213` | `Password@123` | Nashik, Maharashtra | **Module 4: AI Standards** | 6.0 Acres Onion/Tomato, FCI Grade A Quality Checked |
+| **5** | **Anand Verma** | `9876543214` | `Password@123` | Indore, MP | **Module 5: Disease AI** | 7.2 Acres Soyabean & Chana, Historical Leaf Scans |
+| **6** | **Pooja Sharma** | `9876543215` | `Password@123` | Varanasi, UP | **Module 6: Market Linkage** | 3.8 Acres Mustard & Wheat, Active Buyer Contracts |
+
+*(On the login modal, you can select any of these 6 accounts directly from the **"⚡ Quick Select Demo Farmer Account"** dropdown to fill credentials with 1 click).*
 
 ---
 

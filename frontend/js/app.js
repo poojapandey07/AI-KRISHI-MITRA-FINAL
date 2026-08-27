@@ -62,13 +62,23 @@ class AppRouter {
       formRegister.onsubmit = (e) => this.handleRegister(e);
     }
 
-    // Demo Fill button
+    // Demo Fill button & Dropdown change
     const btnFillDemo = document.getElementById("btn-fill-demo");
+    const demoSelector = document.getElementById("demo-account-selector");
+    
+    const fillSelectedDemo = () => {
+      const selectedMobile = demoSelector ? demoSelector.value : "9876543210";
+      const mobileInput = document.getElementById("login-mobile");
+      const passInput = document.getElementById("login-password");
+      if (mobileInput) mobileInput.value = selectedMobile;
+      if (passInput) passInput.value = "Password@123";
+    };
+
     if (btnFillDemo) {
-      btnFillDemo.onclick = () => {
-        document.getElementById("login-mobile").value = "9876543210";
-        document.getElementById("login-password").value = "Password@123";
-      };
+      btnFillDemo.onclick = fillSelectedDemo;
+    }
+    if (demoSelector) {
+      demoSelector.onchange = fillSelectedDemo;
     }
 
     // Listen to auth events
