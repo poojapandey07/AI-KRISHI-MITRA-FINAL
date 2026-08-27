@@ -3,10 +3,10 @@
  * Handles authentication headers, error dispatching, and multipart uploads.
  */
 
-// Dynamically use current host if running on same port, or default to backend port 8000
+// Dynamically use current host and protocol for local and network access
 const API_BASE_URL = window.location.port === "8000" 
   ? window.location.origin 
-  : "http://127.0.0.1:8000";
+  : `${window.location.protocol}//${window.location.hostname || '127.0.0.1'}:8000`;
 
 class ApiService {
   constructor() {
