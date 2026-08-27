@@ -69,6 +69,9 @@ class ApiService {
       return data;
     } catch (err) {
       console.error(`[API Error] ${options.method || 'GET'} ${endpoint}:`, err.message);
+      if (err.name === "TypeError" && err.message.toLowerCase().includes("failed to fetch")) {
+        throw new Error(`Cannot connect to backend at ${this.baseUrl}. Please start the backend: "cd backend && python -m uvicorn main:app --reload"`);
+      }
       throw err;
     }
   }
