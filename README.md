@@ -154,8 +154,6 @@ copy .env.example .env
 
 ```bash
 # Start FastAPI backend with automatic reloading:
-cd backend
-uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 When started, the backend:
@@ -183,29 +181,55 @@ The platform comes pre-seeded with **6 realistic farmer accounts** corresponding
 
 ---
 
-## 🧪 Running Automated Tests
+## 🧠 Module 5: Gemini AI Crop Health & Regional Risk Engine
 
-A 20-step integration test suite verifies the end-to-end user journey:
+The platform integrates **Google Gemini Multimodal AI** as the intelligence layer for crop health diagnostics:
 
-```bash
-python tests/test_api_flow.py
+```text
+[Crop Leaf Photo] + [Context: Crop, Area, Stage, Location, Symptoms]
+                         │
+                         ▼
+        Google Gemini Multimodal AI (gemini-2.5-flash)
+                         │
+                         ▼
+             Structured Diagnostics
+    (Observed Symptoms, Contextual Risk, Reasoning)
+                         │
+                         ▼
+        Authoritative ICAR / CIBRC Database
+    (Safe Non-Hallucinatory Dosages & Chemical Rules)
+                         │
+    ┌────────────────────┼────────────────────┐
+    ▼                    ▼                    ▼
+Area/Cost Planner     Vernacular AI        Confidence Engine
+(Deterministic      (Hindi / English     (High: Validated Action
+Acre/Ha/Bigha)        with Voice TTS)     Low: Expert Escalation)
+                         │
+                         ▼
+              MongoDB Collections
+   (crop_analyses, expert_reviews, risk_reports)
 ```
 
-**Test Coverage:**
-- System health & MongoDB live ping
-- Demo authentication & new farmer registration
-- Adding land parcel & crop registration
-- Centre discovery & slot booking
-- Queue status lookup
-- Bank account linking & security masking
-- NPCI sandbox verification
-- Advancing procurement status to `Payment Initiated`
-- Auto-creation of linked payment record in Krishi Finance
-- Simulating payment status progression to `Payment Credited`
-- FCI / Agmark quality standards grading algorithm
-- Personalized agronomy recommendations
-- Multipart image plant pathology inference
-- Live mandi price searches & buyer lead generation
+### Key Capabilities:
+- **No Hallucinated Dosages**: Gemini diagnoses the disease; exact chemical dosages and water volumes come deterministically from the validated ICAR/CIBRC agricultural database.
+- **Deterministic Area & Cost Planner**: Calculates required pesticide/bio-control quantities and costs in ₹ for Acres, Hectares, or Bighas.
+- **Confidence-Aware & Expert Escalation**: Analyses with low confidence (<60%) automatically route to the agricultural specialist review queue.
+- **Vernacular Voice Guidance**: Natural language explanation in Hindi & English with in-browser speech synthesis (**"🔊 Listen"**).
+- **Regional Early Warning Engine**: Aggregates anonymized community scans by district to issue early outbreak threat alerts (🟢 Low to 🔴 Critical).
+
+---
+
+## 🧪 Running Automated Tests
+
+Run the complete test suites to verify end-to-end functionality:
+
+```bash
+# 1. Test Gemini AI Crop Health, Area Calculator & Regional Risk Engine (10 Tests)
+python tests/test_gemini_crop_health.py
+
+# 2. Test Full 6-Module Platform End-to-End Workflow (20 Tests)
+python tests/test_api_flow.py
+```
 
 ---
 
@@ -244,5 +268,6 @@ main           # Production-ready releases
 
 ## 📄 License
 This project is licensed under the MIT License.
-#   A I - K R I S H I - M I T R A - F I N A L  
+#   A I - K R I S H I - M I T R A - F I N A L 
+ 
  

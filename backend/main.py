@@ -90,8 +90,9 @@ app.include_router(finance_router, prefix="/api/finance", tags=["3. Krishi Finan
 # 4. AI Standards + Recommendation
 app.include_router(ai_standards_router, prefix="/api/ai", tags=["4. AI Standards & Recommendations"])
 
-# 5. Disease & Pest AI
-app.include_router(disease_router, prefix="/api/disease-analysis", tags=["5. Disease & Pest AI"])
+# 5. Disease & Pest AI (Crop Health Intelligence)
+app.include_router(disease_router, prefix="/api/crop", tags=["5. Crop Health Intelligence & Gemini AI"])
+app.include_router(disease_router, prefix="/api/disease-analysis", tags=["5. Crop Health (Legacy)"])
 
 # 6. Market Linkage + Integration
 app.include_router(market_router, prefix="/api/market", tags=["6. Market Linkage"])

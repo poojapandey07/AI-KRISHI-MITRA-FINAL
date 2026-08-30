@@ -56,9 +56,27 @@ class Database:
             self.db.payments.create_index([("procurementId", ASCENDING)])
             self.db.payments.create_index([("farmerId", ASCENDING)])
 
-            # Disease Analyses
+            # Disease & Crop Health Analyses
             self.db.disease_analyses.create_index([("farmerId", ASCENDING)])
             self.db.disease_analyses.create_index([("analysisId", ASCENDING)], unique=True)
+            self.db.crop_analyses.create_index([("farmerId", ASCENDING)])
+            self.db.crop_analyses.create_index([("analysisId", ASCENDING)], unique=True)
+            self.db.crop_analyses.create_index([("crop", ASCENDING)])
+            self.db.crop_analyses.create_index([("created_at", ASCENDING)])
+
+            # Validated Recommendations Dataset
+            self.db.recommendations.create_index([("crop", ASCENDING), ("disease", ASCENDING)])
+
+            # Expert Reviews Queue
+            self.db.expert_reviews.create_index([("analysisId", ASCENDING)], unique=True)
+            self.db.expert_reviews.create_index([("farmerId", ASCENDING)])
+            self.db.expert_reviews.create_index([("expert_status", ASCENDING)])
+
+            # Regional Risk Reports
+            self.db.risk_reports.create_index([("state", ASCENDING), ("district", ASCENDING), ("crop", ASCENDING)])
+
+            # Notifications
+            self.db.notifications.create_index([("farmerId", ASCENDING)])
 
             # Market & Buyers
             self.db.market_prices.create_index([("crop", ASCENDING)])
@@ -104,6 +122,26 @@ class Database:
     @property
     def disease_analyses(self):
         return self.db.disease_analyses
+
+    @property
+    def crop_analyses(self):
+        return self.db.crop_analyses
+
+    @property
+    def recommendations(self):
+        return self.db.recommendations
+
+    @property
+    def expert_reviews(self):
+        return self.db.expert_reviews
+
+    @property
+    def risk_reports(self):
+        return self.db.risk_reports
+
+    @property
+    def notifications(self):
+        return self.db.notifications
 
     @property
     def market_prices(self):

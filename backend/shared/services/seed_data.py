@@ -735,5 +735,90 @@ def seed_initial_data():
 
                 logger.info(f"Seeded demo farmer {acc['fullName']} ({acc['mobile']}) successfully.")
 
+        # 5. Validated Agricultural Recommendations
+        import importlib
+        rec_module = importlib.import_module("modules.disease-pest-ai.recommendations_data")
+        VALIDATED_RECOMMENDATIONS = rec_module.VALIDATED_RECOMMENDATIONS
+        if db_manager.recommendations.count_documents({}) == 0:
+            db_manager.recommendations.insert_many([dict(r) for r in VALIDATED_RECOMMENDATIONS])
+            logger.info("Seeded validated agricultural recommendations successfully.")
+
+        # 6. Sample Regional Crop Health Scans (for Regional Disease Risk Engine & Early Warning demo)
+        if db_manager.crop_analyses.count_documents({}) == 0:
+            sample_scans = [
+                {
+                    "analysisId": "DIS-10101",
+                    "farmerId": "FMR-88016",  # Anand Verma
+                    "crop": "Tomato",
+                    "health_status": "Diseased",
+                    "disease_or_pest": "Early Blight",
+                    "confidence": 92.4,
+                    "severity": "Moderate",
+                    "risk_level": "High",
+                    "affected_part": "Lower Leaves",
+                    "visual_observations": ["Concentric dark brown target rings on lower foliage", "Yellow chlorotic halos"],
+                    "contextual_risk_analysis": "High humidity and rain splash accelerating spore transmission.",
+                    "reasoning_summary": "Alternaria solani target lesions clearly identified.",
+                    "farmer_friendly_explanation_en": "Your tomato foliage shows Early Blight symptoms. Prune bottom infected leaves and spray Mancozeb 75% WP or Copper Oxychloride.",
+                    "farmer_friendly_explanation_hi": "टमाटर की निचली पत्तियों पर अर्ली ब्लाइट (झुलसा) के लक्षण हैं। प्रभावित पत्तियां हटाएं और जैविक या कॉपर फफूंदनाशी का छिड़काव करें।",
+                    "follow_up_questions": ["Did dark spots appear after recent rain?"],
+                    "expert_review_required": False,
+                    "ai_engine": "Gemini 2.5 Flash",
+                    "location": {"state": "Maharashtra", "district": "Nashik"},
+                    "growthStage": "Flowering",
+                    "immediate_action": "Prune lower infected leaves immediately.",
+                    "created_at": now - timedelta(days=2)
+                },
+                {
+                    "analysisId": "DIS-10102",
+                    "farmerId": "FMR-88012",  # Ramesh Kumar
+                    "crop": "Wheat",
+                    "health_status": "Diseased",
+                    "disease_or_pest": "Yellow Rust",
+                    "confidence": 94.8,
+                    "severity": "High",
+                    "risk_level": "Critical",
+                    "affected_part": "Leaf Blade",
+                    "visual_observations": ["Bright yellow uredinial pustules in linear stripes along veins", "Powdery orange-yellow spore residue"],
+                    "contextual_risk_analysis": "Cool foggy mornings in Haryana accelerating Puccinia striiformis stripe rust propagation.",
+                    "reasoning_summary": "Puccinia striiformis stripe rust pustules positively identified.",
+                    "farmer_friendly_explanation_en": "Yellow stripe rust detected on wheat leaves. Apply Propiconazole 25% EC (Tilt) @ 1 ml/L within 48 hours.",
+                    "farmer_friendly_explanation_hi": "गेहूं में पीला रतुआ दिखा है। 48 घंटे के भीतर प्रोपिकोनाजोल (टिल्ट) का छिड़काव करें ताकि फसल सुरक्षित रहे।",
+                    "follow_up_questions": ["Are yellow powdery spores rubbing off onto fingers?"],
+                    "expert_review_required": False,
+                    "ai_engine": "Gemini 2.5 Flash",
+                    "location": {"state": "Haryana", "district": "Karnal"},
+                    "growthStage": "Tillering",
+                    "immediate_action": "Restrict movement across infected patches and spray within 48h.",
+                    "created_at": now - timedelta(days=4)
+                },
+                {
+                    "analysisId": "DIS-10103",
+                    "farmerId": "FMR-88015",  # Nitin Patil
+                    "crop": "Tomato",
+                    "health_status": "Diseased",
+                    "disease_or_pest": "Early Blight",
+                    "confidence": 89.6,
+                    "severity": "Moderate",
+                    "risk_level": "High",
+                    "affected_part": "Leaf",
+                    "visual_observations": ["Concentric dark necrotic lesions", "Yellow halo ring"],
+                    "contextual_risk_analysis": "Multiple reports in Dindori taluka indicate rising local infection pressure.",
+                    "reasoning_summary": "Foliar blight diagnosed from foliar imagery.",
+                    "farmer_friendly_explanation_en": "Early Blight detected. Apply preventive copper spray.",
+                    "farmer_friendly_explanation_hi": "टमाटर में झुलसा रोग है। कॉपर ऑक्सीक्लोराइड का छिड़काव करें।",
+                    "follow_up_questions": [],
+                    "expert_review_required": False,
+                    "ai_engine": "Gemini 2.5 Flash",
+                    "location": {"state": "Maharashtra", "district": "Nashik"},
+                    "growthStage": "Vegetative",
+                    "immediate_action": "Improve airflow and avoid overhead watering.",
+                    "created_at": now - timedelta(days=5)
+                }
+            ]
+            db_manager.crop_analyses.insert_many(sample_scans)
+            logger.info("Seeded initial crop analyses for history and regional risk demo.")
+
     except Exception as e:
         logger.error(f"Error during data seeding: {e}")
+

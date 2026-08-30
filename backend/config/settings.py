@@ -20,6 +20,10 @@ class Settings(BaseSettings):
     # CORS
     ALLOWED_ORIGINS: str = os.getenv("ALLOWED_ORIGINS", "*")
 
+    # Google Gemini AI Layer
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
+    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+
     class Config:
         env_file = ".env"
         extra = "ignore"
