@@ -117,7 +117,137 @@
 </head>
 <body>
 
-  <div id="app-container">
+  <!-- ==================== DEDICATED LOGIN PAGE (STARTING SCREEN) ==================== -->
+  <div id="view-login-page" class="login-page-wrapper">
+    <div class="login-page-container">
+      
+      <!-- Brand Header -->
+      <div class="login-brand-header">
+        <div class="login-brand-icon">🌱</div>
+        <div>
+          <div class="login-brand-title">AI Krishi Mitra</div>
+          <div class="login-brand-sub">Modular Agri Platform</div>
+        </div>
+      </div>
+
+      <!-- Login Card -->
+      <div class="login-card">
+        <div class="login-card-header">
+          <h2 class="login-title">Welcome to AI Krishi Mitra</h2>
+          <p class="login-subtitle">Sign in to access your farm dashboard, APMC mandi tokens, Krishi Finance & AI crop health diagnostics.</p>
+        </div>
+
+        <!-- Auth Tabs (Login / Register) -->
+        <div class="auth-tab-buttons">
+          <button class="auth-tab-btn active" id="tab-auth-login" onclick="appRouter.switchAuthTab('login')">
+            Farmer Login
+          </button>
+          <button class="auth-tab-btn" id="tab-auth-register" onclick="appRouter.switchAuthTab('register')">
+            New Registration
+          </button>
+        </div>
+
+        <!-- Login Pane -->
+        <div id="pane-auth-login">
+          <form id="form-auth-login">
+            <div class="form-group">
+              <label class="form-label">Mobile Number / Email / Farmer ID *</label>
+              <input type="text" class="form-control" id="login-mobile" required value="9876543210" placeholder="e.g. 9876543210">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password *</label>
+              <input type="password" class="form-control" id="login-password" required value="Password@123" placeholder="••••••••">
+            </div>
+
+            <!-- Demo Account Quick Selector -->
+            <div class="login-demo-box">
+              <label class="form-label" style="font-size: 0.8rem; color: var(--primary-700); margin-bottom: 0.35rem;">
+                ⚡ Quick Select Demo Farmer Account (1 - 6):
+              </label>
+              <select class="form-control" id="demo-account-selector" style="font-size: 0.85rem; font-weight: 600; background-color: var(--primary-surface); border-color: var(--primary-300);">
+                <option value="9876543210" selected>1. Ramesh Kumar (9876543210) — Haryana (General Farm)</option>
+                <option value="9876543211">2. Gurpreet Singh (9876543211) — Punjab (Procurement Active)</option>
+                <option value="9876543212">3. Suresh Patel (9876543212) — Gujarat (Finance & DBT Credited)</option>
+                <option value="9876543213">4. Nitin Patil (9876543213) — Maharashtra (AI Standards & Grading)</option>
+                <option value="9876543214">5. Anand Verma (9876543214) — Madhya Pradesh (Disease & Health AI)</option>
+                <option value="9876543215">6. Pooja Sharma (9876543215) — Uttar Pradesh (Market & Buyers)</option>
+              </select>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.45rem;">
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-fill-demo">
+                  ✓ Fill Selected Account
+                </button>
+                <small style="color: var(--text-muted);">Default Password: <strong>Password@123</strong></small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              Log In to Portal
+            </button>
+
+            <div style="text-align: center; margin-top: 1.25rem; font-size: 0.88rem; color: var(--text-muted);">
+              Don't have an account? <a href="javascript:void(0)" onclick="appRouter.switchAuthTab('register')" style="font-weight: 600; color: var(--primary-700);">Register here</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Register Pane -->
+        <div id="pane-auth-register" style="display: none;">
+          <form id="form-auth-register">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" id="reg-name" required placeholder="e.g. Suresh Patel">
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Mobile Number *</label>
+                <input type="tel" class="form-control" id="reg-mobile" required placeholder="10-digit mobile">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address (Optional)</label>
+                <input type="email" class="form-control" id="reg-email" placeholder="kisan@example.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password *</label>
+              <input type="password" class="form-control" id="reg-password" required placeholder="At least 6 characters" minlength="6">
+            </div>
+            <div class="grid-3">
+              <div class="form-group">
+                <label class="form-label">State *</label>
+                <input type="text" class="form-control" id="reg-state" required placeholder="e.g. Haryana">
+              </div>
+              <div class="form-group">
+                <label class="form-label">District *</label>
+                <input type="text" class="form-control" id="reg-district" required placeholder="e.g. Karnal">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Village *</label>
+                <input type="text" class="form-control" id="reg-village" required placeholder="e.g. Nilokheri">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;">
+              Create Farmer Account
+            </button>
+
+            <div style="text-align: center; margin-top: 1.25rem; font-size: 0.88rem; color: var(--text-muted);">
+              Already have an account? <a href="javascript:void(0)" onclick="appRouter.switchAuthTab('login')" style="font-weight: 600; color: var(--primary-700);">Login here</a>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Trust Footer -->
+      <div class="login-footer-notes">
+        <span>🇮🇳 Ministry of Agriculture & Farmers Welfare</span>
+        <span>•</span>
+        <span>Smart India Hackathon Initiative</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="app-container" style="display: none;">
     
     <!-- Mobile Sidebar Backdrop -->
     <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
@@ -872,102 +1002,6 @@
   </div>
 
   <!-- ==================== SHARED MODALS ==================== -->
-
-  <!-- Auth Modal (Login / Register) -->
-  <div class="modal-overlay" id="modal-auth">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3 class="modal-title">🌾 AI Krishi Mitra Portal</h3>
-      </div>
-      <div class="modal-body">
-        <div class="auth-tab-buttons">
-          <button class="auth-tab-btn active" id="tab-auth-login" onclick="appRouter.switchAuthTab('login')">
-            Farmer Login
-          </button>
-          <button class="auth-tab-btn" id="tab-auth-register" onclick="appRouter.switchAuthTab('register')">
-            New Registration
-          </button>
-        </div>
-
-        <!-- Login Pane -->
-        <div id="pane-auth-login">
-          <form id="form-auth-login">
-            <div class="form-group">
-              <label class="form-label">Mobile Number / Email / Farmer ID *</label>
-              <input type="text" class="form-control" id="login-mobile" required value="9876543210" placeholder="e.g. 9876543210">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Password *</label>
-              <input type="password" class="form-control" id="login-password" required value="Password@123" placeholder="••••••••">
-            </div>
-            <div style="margin-bottom: 1.25rem;">
-              <label class="form-label" style="font-size: 0.8rem; color: var(--primary-700); margin-bottom: 0.35rem;">
-                ⚡ Quick Select Demo Farmer Account (1 - 6):
-              </label>
-              <select class="form-control" id="demo-account-selector" style="font-size: 0.85rem; font-weight: 600; background-color: var(--primary-surface); border-color: var(--primary-300);">
-                <option value="9876543210" selected>1. Ramesh Kumar (9876543210) — Haryana (General Farm)</option>
-                <option value="9876543211">2. Gurpreet Singh (9876543211) — Punjab (Procurement Active)</option>
-                <option value="9876543212">3. Suresh Patel (9876543212) — Gujarat (Finance & DBT Credited)</option>
-                <option value="9876543213">4. Nitin Patil (9876543213) — Maharashtra (AI Standards & Grading)</option>
-                <option value="9876543214">5. Anand Verma (9876543214) — Madhya Pradesh (Disease & Health AI)</option>
-                <option value="9876543215">6. Pooja Sharma (9876543215) — Uttar Pradesh (Market & Buyers)</option>
-              </select>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.45rem;">
-                <button type="button" class="btn btn-secondary btn-sm" id="btn-fill-demo">
-                  ✓ Fill Selected Account
-                </button>
-                <small style="color: var(--text-muted);">Default Password: <strong>Password@123</strong></small>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-              Log In to Portal
-            </button>
-          </form>
-        </div>
-
-        <!-- Register Pane -->
-        <div id="pane-auth-register" style="display: none;">
-          <form id="form-auth-register">
-            <div class="form-group">
-              <label class="form-label">Full Name *</label>
-              <input type="text" class="form-control" id="reg-name" required placeholder="e.g. Suresh Patel">
-            </div>
-            <div class="grid-2">
-              <div class="form-group">
-                <label class="form-label">Mobile Number *</label>
-                <input type="tel" class="form-control" id="reg-mobile" required placeholder="10-digit mobile">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email Address (Optional)</label>
-                <input type="email" class="form-control" id="reg-email" placeholder="kisan@example.com">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Password *</label>
-              <input type="password" class="form-control" id="reg-password" required placeholder="At least 6 characters" minlength="6">
-            </div>
-            <div class="grid-3">
-              <div class="form-group">
-                <label class="form-label">State *</label>
-                <input type="text" class="form-control" id="reg-state" required placeholder="e.g. Haryana">
-              </div>
-              <div class="form-group">
-                <label class="form-label">District *</label>
-                <input type="text" class="form-control" id="reg-district" required placeholder="e.g. Karnal">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Village *</label>
-                <input type="text" class="form-control" id="reg-village" required placeholder="e.g. Nilokheri">
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;">
-              Create Farmer Account
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Shared Land Modal -->
   <div class="modal-overlay" id="modal-add-land">

@@ -84,17 +84,17 @@ class AppRouter {
     // Listen to auth events
     window.addEventListener("auth:change", (e) => {
       if (e.detail.isAuthenticated) {
-        window.utils.closeModal("modal-auth");
+        this.hideAuthPage();
         this.updateHeaderUserInfo(e.detail.farmer);
         this.navigate("dashboard");
       } else {
-        this.showAuthModal();
+        this.showAuthPage();
       }
     });
 
     window.addEventListener("auth:expired", () => {
       window.utils.showToast("Your session has expired. Please log in again.", "warning");
-      this.showAuthModal();
+      this.showAuthPage();
     });
   }
 
@@ -108,15 +108,30 @@ class AppRouter {
   checkAuthAndStart() {
     if (window.auth.isAuthenticated()) {
       const farmer = window.auth.getFarmer();
+      this.hideAuthPage();
       this.updateHeaderUserInfo(farmer);
       this.navigate("dashboard");
     } else {
-      this.showAuthModal();
+      this.showAuthPage();
     }
   }
 
+  showAuthPage() {
+    const loginPage = document.getElementById("view-login-page");
+    const appContainer = document.getElementById("app-container");
+    if (loginPage) loginPage.style.display = "flex";
+    if (appContainer) appContainer.style.display = "none";
+  }
+
+  hideAuthPage() {
+    const loginPage = document.getElementById("view-login-page");
+    const appContainer = document.getElementById("app-container");
+    if (loginPage) loginPage.style.display = "none";
+    if (appContainer) appContainer.style.display = "flex";
+  }
+
   showAuthModal() {
-    window.utils.openModal("modal-auth");
+    this.showAuthPage();
   }
 
   switchAuthTab(tab) {
